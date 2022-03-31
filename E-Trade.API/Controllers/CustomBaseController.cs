@@ -8,6 +8,7 @@ namespace E_Trade.API.Controllers
     [ApiController]
     public class CustomBaseController : ControllerBase
     {
+        [NonAction]
         public IActionResult CreatActionResult<T>(CustomResponseDto<T> response)
         {
             if (response.StatusCode == 204)

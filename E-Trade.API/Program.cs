@@ -1,8 +1,11 @@
 using E_Trade.Core.Repositories;
+using E_Trade.Core.Services;
 using E_Trade.Core.UnitOfWorks;
 using E_Trade.Repository;
 using E_Trade.Repository.Repositories;
 using E_Trade.Repository.UnitOfWorks;
+using E_Trade.Service.Mapping;
+using E_Trade.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -17,6 +20,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddDbContext<ETradeDbContext>(options =>
 {

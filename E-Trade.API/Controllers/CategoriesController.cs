@@ -9,15 +9,13 @@ namespace E_Trade.API.Controllers
 {
     public class CategoriesController : CustomBaseController
     {
-        private readonly IService<Category> _service;
         private readonly IMapper _mapper;
-        private readonly ICategoryService _categoryService;
+        private readonly ICategoryService _service;
 
-        public CategoriesController(IMapper mapper, IService<Category> service, ICategoryService categoryService)
+        public CategoriesController(IMapper mapper, ICategoryService categoryService)
         {
             _mapper = mapper;
-            _service = service;
-            _categoryService = categoryService;
+            _service = categoryService;
         }
 
         // GET api/categories
@@ -42,7 +40,7 @@ namespace E_Trade.API.Controllers
         public async Task<IActionResult> GetCategoryWithProducts(int id)
         {
             //return CreatActionResult<CategoryByIdWithProductsDto>(CustomResponseDto<CategoryByIdWithProductsDto>.Success(200, await _categoryService.GetSingleCategoryByIdProducts(id)));
-            return CreatActionResult<CategoryByIdWithProductsDto>(await _categoryService.GetSingleCategoryByIdProducts(id));
+            return CreatActionResult<CategoryByIdWithProductsDto>(await _service.GetSingleCategoryByIdProducts(id));
         }
 
         // POST api/categories 

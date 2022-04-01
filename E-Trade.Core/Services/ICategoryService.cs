@@ -5,6 +5,7 @@ namespace E_Trade.Core.Services
 {
     public interface ICategoryService : IService<Category>
     {
-        Task<CategoryByIdWithProductsDto> GetSingleCategoryByIdProducts(int id);
+        //Task<CategoryByIdWithProductsDto> GetSingleCategoryByIdProducts(int id);
+        Task<CustomResponseDto<CategoryByIdWithProductsDto>> GetSingleCategoryByIdProducts(int categoryId);
     }
 }

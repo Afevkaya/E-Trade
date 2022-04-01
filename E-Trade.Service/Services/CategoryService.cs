@@ -17,11 +17,20 @@ namespace E_Trade.Service.Services
             _mapper = mapper;
         }
 
+        /*
         public async Task<CategoryByIdWithProductsDto> GetSingleCategoryByIdProducts(int id)
         {
             var categoryWithProducts = await _categoryRepository.GetSingleCategoryByIdProducts(id);
             var categoryWithProductsDto = _mapper.Map<CategoryByIdWithProductsDto>(categoryWithProducts);
             return categoryWithProductsDto;
+        }
+        */
+
+        public async Task<CustomResponseDto<CategoryByIdWithProductsDto>> GetSingleCategoryByIdProducts(int categoryId)
+        {
+            var category = await _categoryRepository.GetSingleCategoryByIdProducts(categoryId);
+            var categoryWithProductsDto = _mapper.Map<CategoryByIdWithProductsDto>(category);
+            return CustomResponseDto<CategoryByIdWithProductsDto>.Success(200, categoryWithProductsDto);
         }
     }
 }

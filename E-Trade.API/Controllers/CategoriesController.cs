@@ -41,7 +41,8 @@ namespace E_Trade.API.Controllers
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> GetCategoryWithProducts(int id)
         {
-            return CreatActionResult<CategoryByIdWithProductsDto>(CustomResponseDto<CategoryByIdWithProductsDto>.Success(200, await _categoryService.GetSingleCategoryByIdProducts(id)));
+            //return CreatActionResult<CategoryByIdWithProductsDto>(CustomResponseDto<CategoryByIdWithProductsDto>.Success(200, await _categoryService.GetSingleCategoryByIdProducts(id)));
+            return CreatActionResult<CategoryByIdWithProductsDto>(await _categoryService.GetSingleCategoryByIdProducts(id));
         }
 
         // POST api/categories 

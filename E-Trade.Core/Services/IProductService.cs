@@ -5,6 +5,8 @@ namespace E_Trade.Core.Services
 {
     public interface IProductService : IService<Product>
     {
-        Task<List<ProductsWithCategoryDto>> GetProductsWithCategory();
+        //Task<List<ProductsWithCategoryDto>> GetProductsWithCategory();
+        Task<CustomResponseDto<List<ProductsWithCategoryDto>>> GetProductsWithCategory();
+
     }
 }

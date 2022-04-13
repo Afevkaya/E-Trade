@@ -1,7 +1,9 @@
 ﻿using E_Trade.Core.Configurations;
 using E_Trade.Core.DTOs;
 using E_Trade.Core.Models;
+using E_Trade.Core.Repositories;
 using E_Trade.Core.Services;
+using E_Trade.Core.UnitOfWorks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -15,8 +17,7 @@ namespace E_Trade.Service.Services
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly CustomTokenOption _tokenOption;
-
-
+        
         public TokenService(UserManager<AppUser> userManager,IOptions<CustomTokenOption> options)
         {
             _userManager = userManager;

@@ -14,7 +14,7 @@ namespace E_Trade.Repository.Configurations
             builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,2)");
             builder.Property(x => x.Description).IsRequired().HasMaxLength(300);
             builder.Property(x => x.ImageUrl).IsRequired();
-            builder.Property(x => x.Quantity).IsRequired();
+            builder.Property(x => x.StockQuantity).IsRequired();
 
             builder.ToTable("Products");
 

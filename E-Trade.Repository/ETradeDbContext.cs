@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace E_Trade.Repository
 {
-    public class ETradeDbContext : DbContext
+    public class ETradeDbContext : IdentityDbContext<AppUser,IdentityRole,string>
     {
         public ETradeDbContext(DbContextOptions<ETradeDbContext> options) : base(options)
         {

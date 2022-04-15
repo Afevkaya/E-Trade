@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace E_Trade.Repository
 {
-    public class ETradeDbContext : IdentityDbContext<AppUser,IdentityRole,string>
+    public class ETradeDbContext : DbContext
     {
         public ETradeDbContext(DbContextOptions<ETradeDbContext> options) : base(options)
         {
@@ -15,7 +15,6 @@ namespace E_Trade.Repository
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

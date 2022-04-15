@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace E_Trade.Core.Services
 {
     // Token üretecek service class'ın implement edeceği interface
+    // Proje içinde kullanılacak.
 
     // ITokenService interface
     public interface ITokenService

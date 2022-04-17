@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace E_Trade.Service.Configurations
 {
+    // Token oluştururken gerekli olan parametreler.
+    // Bu parametrelere erişebilmek için parametrelere karşılık gelen property'lerin bulunduğu class.
+
+    // CustomTokenOption class
     public class CustomTokenOption
     {
         public List<string> Audience { get; set; }

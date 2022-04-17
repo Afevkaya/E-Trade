@@ -1,4 +1,5 @@
 using E_Trade.API.Filters;
+using E_Trade.Core.Configurations;
 using E_Trade.Core.Repositories;
 using E_Trade.Core.Services;
 using E_Trade.Core.UnitOfWorks;
@@ -17,7 +18,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
+builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
+
+builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute()))
+    .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -28,6 +32,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// DI Container
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));

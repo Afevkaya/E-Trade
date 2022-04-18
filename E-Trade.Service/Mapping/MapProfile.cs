@@ -12,6 +12,7 @@ namespace E_Trade.Service.Mapping
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Product, ProductsWithCategoryDto>();
             CreateMap<Category, CategoryByIdWithProductsDto>();
+            CreateMap<AppUser, AppUserDto>().ReverseMap();
         }
     }
 }

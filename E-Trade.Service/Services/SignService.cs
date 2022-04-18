@@ -8,6 +8,7 @@ namespace E_Trade.Service.Services
     // SignService class
     public static class SignService
     {
+        // Simetrik imzalama metodu.
         public static SecurityKey GetSymmetricSecurityKey(string securityKey)
         {
             return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));

@@ -56,10 +56,10 @@ namespace E_Trade.Service.Services
             // Db'de user'a ait bir kullanıcıya ait bir refresh token olup olmadığını kontrol eden if else bloğu
             // User'a ait önceden bir refresh token yoksa ekleme yapıyor.
             // userRefreshToken --> UserRefreshToken
-            var userRefreshToken = await _genericRepository.Where(x => x.UserId == userApp.Id).SingleOrDefaultAsync();
+            var userRefreshToken = await _genericRepository.Where(x => x.UserId == appUser.Id).SingleOrDefaultAsync();
             if(userRefreshToken == null)
             {
-                await _genericRepository.AddAsync(new UserRefreshToken { UserId = userApp.Id, Code = tokenDto.RefreshToken, Expiration = tokenDto.RefreshTokenExpiration });
+                await _genericRepository.AddAsync(new UserRefreshToken { UserId = appUser.Id, Code = tokenDto.RefreshToken, Expiration = tokenDto.RefreshTokenExpiration });
             }
 
             // Varsa güncelleme

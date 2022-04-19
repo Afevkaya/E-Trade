@@ -1,4 +1,5 @@
 using E_Trade.API.Filters;
+using E_Trade.API.Middlewares;
 using E_Trade.Core.Configurations;
 using E_Trade.Core.Repositories;
 using E_Trade.Core.Services;
@@ -62,6 +63,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCustomException();
 
 app.UseAuthorization();
 

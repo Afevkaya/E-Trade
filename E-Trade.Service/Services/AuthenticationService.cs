@@ -27,7 +27,7 @@ namespace E_Trade.Service.Services
             _unitOfWork = unitOfWork;
         }
 
-        // Token Üretme metodu
+        // User'a token dönecek metod.
         public async Task<CustomResponseDto<TokenDto>> CreateTokenAsync(LoginDto loginDto)
         {
             if (loginDto == null)
@@ -35,29 +35,31 @@ namespace E_Trade.Service.Services
                 throw new ArgumentNullException(nameof(loginDto));
             }
 
-            var user = await _userManager.FindByEmailAsync(loginDto.Email);
-            if(user == null)
+            // user --> AppUser 
+            var userApp = await _userManager.FindByEmailAsync(loginDto.Email);
+            if(userApp == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrond!");
             }
 
-            if(!await _userManager.CheckPasswordAsync(user, loginDto.Password))
+            if(!await _userManager.CheckPasswordAsync(userApp, loginDto.Password))
             {
                 return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrond!");
             }
 
-            var tokenDto = _tokenService.CreateToken(user);
+            var tokenDto = _tokenService.CreateToken(userApp);
             if (tokenDto == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(500, "An error occurred");
             }
 
-            // User' a daha önce refresh token verip vermediğini kontrol eden if else bloğu
+            // Db'de user'a ait bir kullanıcıya ait bir refresh token olup olmadığını kontrol eden if else bloğu
             // User'a ait önceden bir refresh token yoksa ekleme yapıyor.
-            var userRefreshToken = await _genericRepository.Where(x => x.UserId == user.Id).SingleOrDefaultAsync();
+            // userRefreshToken --> UserRefreshToken
+            var userRefreshToken = await _genericRepository.Where(x => x.UserId == userApp.Id).SingleOrDefaultAsync();
             if(userRefreshToken == null)
             {
-                await _genericRepository.AddAsync(new UserRefreshToken { UserId = user.Id, Code = tokenDto.RefreshToken, Expiration = tokenDto.RefreshTokenExpiration });
+                await _genericRepository.AddAsync(new UserRefreshToken { UserId = userApp.Id, Code = tokenDto.RefreshToken, Expiration = tokenDto.RefreshTokenExpiration });
             }
 
             // Varsa güncelleme
@@ -87,25 +89,28 @@ namespace E_Trade.Service.Services
                 return CustomResponseDto<TokenDto>.Fail(404, "Refresh Token Not Found");
             }
 
-            // user kontrolü
-            var user = await _userManager.FindByIdAsync(existRefreshToken.UserId);
-            if(user == null)
+            // userApp kontrolü
+            // Token üretmek için userApp ihtiyaç.
+            var userApp = await _userManager.FindByIdAsync(existRefreshToken.UserId);
+            if(userApp == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(404, "User Id Not Found");
             }
 
-            var token = _tokenService.CreateToken(user);
-            if (token == null)
+            // Token üretme
+            var tokenDto = _tokenService.CreateToken(userApp);
+            if (tokenDto == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(500, "An error occurred");
             }
 
-            existRefreshToken.Code = token.RefreshToken;
-            existRefreshToken.Expiration = token.RefreshTokenExpiration;
+            // db deki token'ı üretilen token ile güncelleme
+            existRefreshToken.Code = tokenDto.RefreshToken;
+            existRefreshToken.Expiration = tokenDto.RefreshTokenExpiration;
 
             await _unitOfWork.CommitAsync();
 
-            return CustomResponseDto<TokenDto>.Success(200, token);
+            return CustomResponseDto<TokenDto>.Success(200, tokenDto);
 
             
         }
@@ -118,14 +123,17 @@ namespace E_Trade.Service.Services
                 throw new ArgumentNullException(nameof(tokenDto));
             }
 
+            // db'de var olup olmadığı kontrolü
             var refreshtoken = await _genericRepository.Where(x=>x.Code == tokenDto.RefreshToken).SingleOrDefaultAsync();
             if(refreshtoken == null)
             {
                 return CustomResponseDto<NoContentDto>.Fail(404, "Refresh Token Not Found");
             }
 
+            // db'den silme
             _genericRepository.Remove(refreshtoken);
             await _unitOfWork.CommitAsync();
+
             return CustomResponseDto<NoContentDto>.Success(200);
         }
     }

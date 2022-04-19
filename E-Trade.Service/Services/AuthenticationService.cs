@@ -36,18 +36,18 @@ namespace E_Trade.Service.Services
             }
 
             // user --> AppUser 
-            var userApp = await _userManager.FindByEmailAsync(loginDto.Email);
-            if(userApp == null)
+            var appUser = await _userManager.FindByEmailAsync(loginDto.Email);
+            if(appUser == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrond!");
             }
 
-            if(!await _userManager.CheckPasswordAsync(userApp, loginDto.Password))
+            if(!await _userManager.CheckPasswordAsync(appUser, loginDto.Password))
             {
                 return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrond!");
             }
 
-            var tokenDto = _tokenService.CreateToken(userApp);
+            var tokenDto = _tokenService.CreateToken(appUser);
             if (tokenDto == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(500, "An error occurred");
@@ -91,14 +91,14 @@ namespace E_Trade.Service.Services
 
             // userApp kontrolü
             // Token üretmek için userApp ihtiyaç.
-            var userApp = await _userManager.FindByIdAsync(existRefreshToken.UserId);
-            if(userApp == null)
+            var appUser = await _userManager.FindByIdAsync(existRefreshToken.UserId);
+            if(appUser == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(404, "User Id Not Found");
             }
 
             // Token üretme
-            var tokenDto = _tokenService.CreateToken(userApp);
+            var tokenDto = _tokenService.CreateToken(appUser);
             if (tokenDto == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(500, "An error occurred");

@@ -2,6 +2,9 @@
 
 namespace E_Trade.Repository.UnitOfWorks
 {
+    // UnitOfWork design pattern'ı uygulanmasını sağlayan class.
+
+    // UnitOfWork class
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ETradeDbContext _context;

@@ -13,6 +13,9 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using E_Trade.Core.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +44,10 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
@@ -51,6 +58,45 @@ builder.Services.AddDbContext<ETradeDbContext>(options =>
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(ETradeDbContext)).GetName().Name);
     });
 });
+
+// Üyelik Sistemi Ekleme
+builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
+{
+    // Identitiy için bazý ayarlamalar.
+    opt.User.RequireUniqueEmail = true;
+    opt.Password.RequireNonAlphanumeric = false;
+}).AddEntityFrameworkStores<ETradeDbContext>().AddDefaultTokenProviders();
+
+// Token kontrolü için
+builder.Services.AddAuthentication(opt =>
+{
+    // Elimizdeki Schema
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    
+    // Ýki schemayý konuþturma
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    
+    // Token'dan gelen schema
+}).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
+{
+    var tokeOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
+    opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+    {
+        // Kontrol edilecek parametreler.
+        IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokeOptions.SecurityKey),
+        ValidIssuer = tokeOptions.Issuer,
+        ValidAudience = tokeOptions.Audience[0],
+
+        // Kontrol edilecek özellikler.
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+    };
+
+});
+
 
 var app = builder.Build();
 

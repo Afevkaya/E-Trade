@@ -1,5 +1,6 @@
 ﻿namespace E_Trade.Core.Models
 {
+    // Product entity class
     public class Product
     {
         public int Id { get; set; }

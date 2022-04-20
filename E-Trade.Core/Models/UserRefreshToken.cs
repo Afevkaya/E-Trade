@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace E_Trade.Core.Models
 {
+    // Refresh Token'a ait olması gereken bilgiler bulunmaktadır.
+    // Refresh Token Database' kayıt edilecek.
+
     // UserRefreshToken entity class
     public class UserRefreshToken
     {

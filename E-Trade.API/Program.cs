@@ -1,5 +1,5 @@
 using E_Trade.API.Filters;
-using E_Trade.Core.Configurations;
+using E_Trade.Service.Configurations;
 using E_Trade.Core.Repositories;
 using E_Trade.Core.Services;
 using E_Trade.Core.UnitOfWorks;

@@ -1,4 +1,4 @@
-﻿using E_Trade.Core.Configurations;
+﻿using E_Trade.Service.Configurations;
 using E_Trade.Core.DTOs;
 using E_Trade.Core.Models;
 using E_Trade.Core.Services;

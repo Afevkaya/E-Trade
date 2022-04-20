@@ -39,12 +39,12 @@ namespace E_Trade.Service.Services
             var appUser = await _userManager.FindByEmailAsync(loginDto.Email);
             if(appUser == null)
             {
-                return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrond!");
+                return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrong");
             }
 
             if(!await _userManager.CheckPasswordAsync(appUser, loginDto.Password))
             {
-                return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrond!");
+                return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrong!");
             }
 
             var tokenDto = _tokenService.CreateToken(appUser);

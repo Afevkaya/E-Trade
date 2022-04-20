@@ -4,6 +4,9 @@ using System.Linq.Expressions;
 
 namespace E_Trade.Repository.Repositories
 {
+    // Bütün entity class'lar için olması gereken metodların(interface içinde) gövdesinin kodlandığı class.
+
+    // GenericRepository generic class
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         protected readonly ETradeDbContext _dbContext;

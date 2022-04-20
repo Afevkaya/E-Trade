@@ -4,6 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace E_Trade.Repository.Configurations
 {
+    // Database tarafında product tablosu için config işlemlerinin yapıldığı class.
+    // Config işlemi entity class üzerinde yapılır.
+    // Config class olabilmesi için IEntityTypeConfiguration<> generic interface'ini implement edilmesi gerekir.
+    // Database tarafına yansıması için Context class2ı içinde belirtilmesi gerekir.
+
+    // ProductConfiguration class.
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)

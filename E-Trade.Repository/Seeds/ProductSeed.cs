@@ -4,6 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace E_Trade.Repository.Seeds
 {
+    // Database oluşturulurken Db'ye eklenmesi istenilen datalar için oluşturulan class.
+    // Bu class da bir config class'ı olduğu için IEntityTypeConfiguration<> interface'ini implement etmesi gerekir.
+    // Db ye yansıması için Context class'ına bu class'ın bildirilmesi gerekir. 
+
+    // ProductSeed class
     public class ProductSeed : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)

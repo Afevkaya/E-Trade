@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace E_Trade.Core.DTOs
+﻿namespace E_Trade.Core.DTOs
 {
+    // Bir user oluşturulurken kullanıcı tarafı ile etkileşime geçecek Dto class.
+
+    // CreateUserDto class.
     public class CreateUserDto
     {
         public string UserName { get; set; }

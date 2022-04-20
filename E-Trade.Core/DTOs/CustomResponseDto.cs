@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace E_Trade.Core.DTOs
 {
+    // Kullancı tarafına her işlem sonrası farklı yapılar dönmek UI tarafında zorluklar çıkarabilir.
+    // Bu sorunu ortadan kaldırmak için tek bir yapı dönülmesi gerekir.
+    // Generic CustomResponseDto class işlem sonucu ne olursa olsun UI tarafına tek bir yapı dönmesini sağlıyor.
+
+    // CustomResponseDto Generic class
     public class CustomResponseDto<T>
     {
         public T Data { get; set; }

@@ -1,5 +1,8 @@
 ﻿namespace E_Trade.Core.DTOs
 {
+    // Product ile ilgili bir işlem gerçekleştirirken kullanılacak Dto class.
+
+    // ProductDto class.
     public class ProductDto
     {
         public int Id { get; set; }

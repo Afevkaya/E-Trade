@@ -1,6 +1,9 @@
 ﻿namespace E_Trade.Core.DTOs
 {
-    // Empty class
+    // Kullanıcı tarafına her zaman bir içerik gönderilmeyebilir.
+    // O tür işlemlerden sonra kullanılacak dto class.
+
+    // NoContentDto class
     public class NoContentDto
     {
     }

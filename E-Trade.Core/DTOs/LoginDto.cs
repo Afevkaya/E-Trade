@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace E_Trade.Core.DTOs
+﻿namespace E_Trade.Core.DTOs
 {
+    // Kullanıcı tarafı login işlemi gerçekleştirirken kullanıcı tarafı ile etkileşime geçecek dto class.
+
+    // LoginDto class
     public class LoginDto
     {
         public string Email { get; set; }

@@ -1,7 +1,8 @@
 ﻿namespace E_Trade.Core.DTOs
 {
-    // User tarafına döndürülecek TokenDto class
+    // Kullanıcı tarafına döndürülecek Dto class.
     // Class içinde AccessToken, RefreshToken ve ömürleri bulunmakta.
+    // Bu bilgiler kullanıcının tarafında saklanacak.
 
     // TokenDto Dto class
     public class TokenDto

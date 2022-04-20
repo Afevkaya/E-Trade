@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace E_Trade.Core.Services
 {
+    // Bütün class'lar için temel metodların bulunduğu interface.
+    // IGenericRepository interface'ne benzerlikleri bulunur.
+    // Ama farklı amaçlar için kullanılır.
+    // Repository entity class döner. Service dto class döner. 
+
+
+    // IService generic interface
     public interface IService<T> where T : class
     {
         Task<T> GetByIdAsync(int id);

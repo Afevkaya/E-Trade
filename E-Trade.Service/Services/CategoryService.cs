@@ -7,6 +7,11 @@ using E_Trade.Core.UnitOfWorks;
 
 namespace E_Trade.Service.Services
 {
+    // Category class'ı için yazılmış custom metodların kodlandığı class.
+    // Service class'ları kullanıcı tarafı ile etkileşime geçer.
+    // Bu yüzden geriye Dto class dönerler.
+
+    // CategoryService class.
     public class CategoryService : Service<Category>, ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;

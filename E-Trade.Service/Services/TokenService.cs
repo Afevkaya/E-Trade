@@ -1,21 +1,21 @@
-﻿using E_Trade.Service.Configurations;
-using E_Trade.Core.DTOs;
+﻿using E_Trade.Core.DTOs;
 using E_Trade.Core.Models;
 using E_Trade.Core.Services;
+using E_Trade.Service.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace E_Trade.Service.Services
 {
+    // Token üretecek class.
+    // Token ile ilgili bütün metodlar bu class içinde bulunur.
+    // Access Token ve Refresh Token için gerekli feature'ları üreten metodların bulunduğu class.
+
+    // TokenService class
     public class TokenService : ITokenService
     {
         private readonly UserManager<AppUser> _userManager;

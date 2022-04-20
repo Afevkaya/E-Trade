@@ -9,6 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Trade.Service.Services
 {
+    // Authentication işlemlerini(metodlarını) kodladığımız class.
+    // IAuthenticationService interface'ini implement eder.
+    // TokenService class bu service içerisinde kullanılır.
+
+    // AuthenticationService class.
     public class AuthenticationService : IAuthenticationService
     {
         private readonly ITokenService _tokenService;
@@ -27,7 +32,7 @@ namespace E_Trade.Service.Services
             _unitOfWork = unitOfWork;
         }
 
-        // User'a token dönecek metod.
+        // User'a token dönecek asenkron metod.
         public async Task<CustomResponseDto<TokenDto>> CreateTokenAsync(LoginDto loginDto)
         {
             if (loginDto == null)
@@ -53,7 +58,7 @@ namespace E_Trade.Service.Services
                 return CustomResponseDto<TokenDto>.Fail(500, "An error occurred");
             }
 
-            // Db'de user'a ait bir kullanıcıya ait bir refresh token olup olmadığını kontrol eden if else bloğu
+            // Db'de user'a ait bir refresh token olup olmadığını kontrol eden if else bloğu
             // User'a ait önceden bir refresh token yoksa ekleme yapıyor.
             // userRefreshToken --> UserRefreshToken
             var userRefreshToken = await _genericRepository.Where(x => x.UserId == appUser.Id).SingleOrDefaultAsync();

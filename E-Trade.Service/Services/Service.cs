@@ -2,15 +2,14 @@
 using E_Trade.Core.Services;
 using E_Trade.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace E_Trade.Service.Services
 {
+    // Bütün entity class'lar için temel işlemleri(metodları) içeren class.
+    // Entityler için custom metod kodlanılan classlar bu classı inherit eder.
+
+    // Service generic class
     public class Service<T> : IService<T> where T : class
     {
         private readonly IGenericRepository<T> _repository;

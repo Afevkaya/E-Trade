@@ -9,6 +9,6 @@ namespace E_Trade.Core.Services
     {
         Task<CustomResponseDto<TokenDto>> CreateTokenAsync(LoginDto loginDto);
         Task<CustomResponseDto<TokenDto>> CreateTokenByRefreshTokenAsync(string refreshToken);
-        Task<CustomResponseDto<NoContentDto>> RevokeRefreshToken(TokenDto tokenDto);
+        Task<CustomResponseDto<NoContentDto>> RevokeRefreshToken(string refreshToken);
     }
 }

@@ -121,22 +121,22 @@ namespace E_Trade.Service.Services
         }
 
         // RefreshToken silme metodu.
-        public async Task<CustomResponseDto<NoContentDto>> RevokeRefreshToken(TokenDto tokenDto)
+        public async Task<CustomResponseDto<NoContentDto>> RevokeRefreshToken(string refreshToken)
         {
-            if (tokenDto == null)
+            if (refreshToken == null)
             {
-                throw new ArgumentNullException(nameof(tokenDto));
+                throw new ArgumentNullException(nameof(refreshToken));
             }
 
             // db'de var olup olmadığı kontrolü
-            var refreshtoken = await _genericRepository.Where(x=>x.Code == tokenDto.RefreshToken).SingleOrDefaultAsync();
-            if(refreshtoken == null)
+            var existRefreshToken = await _genericRepository.Where(x=>x.Code == refreshToken).SingleOrDefaultAsync();
+            if(existRefreshToken == null)
             {
                 return CustomResponseDto<NoContentDto>.Fail(404, "Refresh Token Not Found");
             }
 
             // db'den silme
-            _genericRepository.Remove(refreshtoken);
+            _genericRepository.Remove(existRefreshToken);
             await _unitOfWork.CommitAsync();
 
             return CustomResponseDto<NoContentDto>.Success(200);

@@ -23,6 +23,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
 
+
 builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute()))
     .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
@@ -79,13 +80,17 @@ builder.Services.AddAuthentication(opt =>
     // Token'dan gelen schema
 }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
-    var tokeOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
+    var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
+    if (tokenOptions.Audience == null)
+    {
+        throw new Exception("Audience boþ");
+    }
     opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
     {
         // Kontrol edilecek parametreler.
-        IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokeOptions.SecurityKey),
-        ValidIssuer = tokeOptions.Issuer,
-        ValidAudience = tokeOptions.Audience[0],
+        IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
+        ValidIssuer = tokenOptions.Issuer,
+        ValidAudience = tokenOptions.Audience[0],
 
         // Kontrol edilecek özellikler.
         ValidateIssuerSigningKey = true,
@@ -99,6 +104,7 @@ builder.Services.AddAuthentication(opt =>
 
 
 var app = builder.Build();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -114,4 +120,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

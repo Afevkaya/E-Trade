@@ -2,11 +2,12 @@
 using E_Trade.Core.DTOs;
 using E_Trade.Core.Models;
 using E_Trade.Core.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Trade.API.Controllers
 {
+    [Authorize]
     public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;
@@ -64,7 +65,7 @@ namespace E_Trade.API.Controllers
         }
 
         // DELETE api/products/id
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _service.GetByIdAsync(id);

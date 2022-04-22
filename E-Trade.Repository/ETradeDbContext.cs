@@ -10,7 +10,7 @@ namespace E_Trade.Repository
     // Identity işlemleri kullanılacağı için IdentityDbContext class'ından inheritance alınıyor.
 
     // ETradeDbContext class
-    public class ETradeDbContext : IdentityDbContext<AppUser,IdentityRole,string>
+    public class ETradeDbContext : IdentityDbContext<AppUser,AppRole,string>
     {
         // Db config işlemleri
         public ETradeDbContext(DbContextOptions<ETradeDbContext> options) : base(options)

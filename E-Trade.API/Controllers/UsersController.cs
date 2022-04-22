@@ -1,12 +1,11 @@
 ﻿using E_Trade.Core.DTOs;
 using E_Trade.Core.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Trade.API.Controllers
 {
-    
+
     public class UsersController : CustomBaseController
     {
         private readonly IUserService _userService;

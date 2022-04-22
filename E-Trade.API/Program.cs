@@ -61,7 +61,7 @@ builder.Services.AddDbContext<ETradeDbContext>(options =>
 });
 
 // Üyelik Sistemi Ekleme
-builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
+builder.Services.AddIdentity<AppUser, AppRole>(opt =>
 {
     // Identitiy için bazý ayarlamalar.
     opt.User.RequireUniqueEmail = true;

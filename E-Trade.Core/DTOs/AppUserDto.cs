@@ -1,4 +1,6 @@
-﻿ namespace E_Trade.Core.DTOs
+﻿using System.Text.Json.Serialization;
+
+namespace E_Trade.Core.DTOs
 {
     // Kullanıcı tarafına Modle class'lar yerine dto class'lar döndürülür.
     // Best Practice yöntem budur.

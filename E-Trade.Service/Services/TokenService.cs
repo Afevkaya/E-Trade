@@ -37,14 +37,15 @@ namespace E_Trade.Service.Services
         }
 
         // Claim oluşturma metod
-        private IEnumerable<Claim> GetClaims(AppUser appUser, List<string> audinces)
+        private IEnumerable<Claim> GetClaims(AppUser appUser, List<string> audinces, string role)
         {
             var userList = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier,appUser.Id),
                 new Claim(JwtRegisteredClaimNames.Email, appUser.Email),
                 new Claim(ClaimTypes.Name,appUser.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Role,role)
             };
             userList.AddRange(audinces.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
 
@@ -52,12 +53,14 @@ namespace E_Trade.Service.Services
         }
 
         // Token üreten metod
-        public TokenDto CreateToken(AppUser appUser)
+        public async Task<TokenDto> CreateToken(AppUser appUser)
         {
             var accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
             var refreshTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.RefreshTokenExpiration);
 
             var secretKey = SignService.GetSymmetricSecurityKey(_tokenOptions.SecurityKey);
+
+            var role = (await _userManager.GetRolesAsync(appUser)).FirstOrDefault();
 
             SigningCredentials signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256Signature);
             
@@ -65,7 +68,7 @@ namespace E_Trade.Service.Services
                 issuer: _tokenOptions.Issuer,
                 expires: accessTokenExpiration,
                 notBefore: DateTime.Now,
-                claims: GetClaims(appUser,_tokenOptions.Audience),
+                claims: GetClaims(appUser,_tokenOptions.Audience, role),
                 signingCredentials: signingCredentials);
 
             var handler = new JwtSecurityTokenHandler();

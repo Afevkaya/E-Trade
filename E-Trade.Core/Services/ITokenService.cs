@@ -10,6 +10,6 @@ namespace E_Trade.Core.Services
     // ITokenService interface
     public interface ITokenService
     {
-        TokenDto CreateToken(AppUser appUser);
+        Task<TokenDto> CreateToken(AppUser appUser);
     }
 }

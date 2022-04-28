@@ -52,7 +52,7 @@ namespace E_Trade.Service.Services
                 return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrong!");
             }
 
-            var tokenDto = _tokenService.CreateToken(appUser);
+            var tokenDto = await _tokenService.CreateToken(appUser);
             if (tokenDto == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(500, "An error occurred");
@@ -103,7 +103,7 @@ namespace E_Trade.Service.Services
             }
 
             // Token üretme
-            var tokenDto = _tokenService.CreateToken(appUser);
+            var tokenDto = await _tokenService.CreateToken(appUser);
             if (tokenDto == null)
             {
                 return CustomResponseDto<TokenDto>.Fail(500, "An error occurred");

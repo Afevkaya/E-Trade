@@ -10,6 +10,7 @@ namespace E_Trade.Core.Services
     public interface IUserService
     {
         Task<CustomResponseDto<AppUserDto>> CreateUserAsync(CreateUserDto createUserDto);
+        Task<CustomResponseDto<List<AppUserDto>>> GetUsersAsync();
         Task<CustomResponseDto<AppUserDto>> GetUserByNameAsync(string userName);
     }
 }

@@ -40,7 +40,7 @@ namespace E_Trade.Service.Services
                 throw new ArgumentNullException(nameof(loginDto));
             }
 
-            // user --> AppUser 
+            // appUser --> AppUser 
             var appUser = await _userManager.FindByEmailAsync(loginDto.Email);
             if(appUser == null)
             {

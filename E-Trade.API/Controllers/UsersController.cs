@@ -15,6 +15,13 @@ namespace E_Trade.API.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetUsers()
+        {
+            var appUserDto = await _userService.GetUsersAsync();
+            return CreatActionResult(appUserDto);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
         {
@@ -22,14 +29,15 @@ namespace E_Trade.API.Controllers
             return CreatActionResult(result);
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> GetUser()
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetUserByUserName()
         {
             // Name Token'dan gelecek.
             var result = await _userService.GetUserByNameAsync(HttpContext.User.Identity.Name);
             return CreatActionResult(result);
         }
+
 
     }
 }

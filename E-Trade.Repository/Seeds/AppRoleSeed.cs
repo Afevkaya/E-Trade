@@ -11,15 +11,23 @@ namespace E_Trade.Repository.Seeds
             builder.HasData(
             new AppRole
             {
-                Name = "Admin"
+                Name = "Admin",
+                NormalizedName = "ADMIN"
             },
             new AppRole
             {
-                Name = "Customer"
+                Name = "Customer",
+                NormalizedName = "CUSTOMER"
             },
             new AppRole
             {
-                Name = "Customer Service"
+                Name = "Customer Service",
+                NormalizedName = "CUSTOMER SERVICE"
+            },
+            new AppRole
+            {
+                Name = "Sales Person",
+                NormalizedName = "SALES PERSON"
             });
         }
     }

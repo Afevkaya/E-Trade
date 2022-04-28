@@ -42,6 +42,12 @@ namespace E_Trade.Service.Services
 
         }
 
+        public async Task<CustomResponseDto<List<AppUserDto>>> GetUsersAsync()
+        {
+            var users =  _userManager.Users.ToList();
+            return CustomResponseDto<List<AppUserDto>>.Success(200, _mapper.Map<List<AppUserDto>>(users));
+        }
+
         // User arama metod. Search
         public async Task<CustomResponseDto<AppUserDto>> GetUserByNameAsync(string userName)
         {

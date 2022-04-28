@@ -1,4 +1,4 @@
-using E_Trade.API.Filters;
+ using E_Trade.API.Filters;
 using E_Trade.Service.Configurations;
 using E_Trade.Core.Repositories;
 using E_Trade.Core.Services;
@@ -23,7 +23,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
 
-
+// Fluent Validation ile ilgili 
 builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute()))
     .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
@@ -60,15 +60,16 @@ builder.Services.AddDbContext<ETradeDbContext>(options =>
     });
 });
 
-// Üyelik Sistemi Ekleme
+// Üyelik Sistemi Servis Ekleme
 builder.Services.AddIdentity<AppUser, AppRole>(opt =>
 {
     // Identitiy için bazý ayarlamalar.
     opt.User.RequireUniqueEmail = true;
     opt.Password.RequireNonAlphanumeric = false;
+    opt.User.AllowedUserNameCharacters = "abcçdefgðhýijklmnoöpqrstuüvwxyzABCÇDEFGÐHIÝJKLMNOÖPQRSÞTUÜVWXYZ0123456789-._@/ ";
 }).AddEntityFrameworkStores<ETradeDbContext>().AddDefaultTokenProviders();
 
-// Token kontrolü için
+// Token Servisill, token kontrolü için
 builder.Services.AddAuthentication(opt =>
 {
     // Elimizdeki Schema
@@ -81,18 +82,15 @@ builder.Services.AddAuthentication(opt =>
 }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
     var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
-    if (tokenOptions.Audience == null)
-    {
-        throw new Exception("Audience boþ");
-    }
     opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
     {
         // Kontrol edilecek parametreler.
+        // Jwt den gelen parametreler alttaki parametreler ile kýyaslanacak.
         IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
         ValidIssuer = tokenOptions.Issuer,
         ValidAudience = tokenOptions.Audience[0],
 
-        // Kontrol edilecek özellikler.
+        // Alttaki özellikler kontrol edilsin mi edilmesin mi?
         ValidateIssuerSigningKey = true,
         ValidateIssuer = true,
         ValidateAudience = true,
@@ -115,8 +113,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthentication();    // Doðrulama
+
+app.UseAuthorization();     // Yetkilendirme
 
 app.MapControllers();
 

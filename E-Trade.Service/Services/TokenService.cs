@@ -47,10 +47,11 @@ namespace E_Trade.Service.Services
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
             userList.AddRange(audinces.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
+
             return userList;
         }
 
-        // Toek üreten metod
+        // Token üreten metod
         public TokenDto CreateToken(AppUser appUser)
         {
             var accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);

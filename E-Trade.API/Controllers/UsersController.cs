@@ -15,7 +15,7 @@ namespace E_Trade.API.Controllers
             _userService = userService;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {

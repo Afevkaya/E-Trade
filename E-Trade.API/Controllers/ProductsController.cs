@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Trade.API.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;

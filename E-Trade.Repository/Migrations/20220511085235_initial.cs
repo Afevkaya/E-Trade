@@ -205,15 +205,43 @@ namespace E_Trade.Repository.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Baskets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProductId = table.Column<int>(type: "integer", nullable: false),
+                    AppUserId = table.Column<string>(type: "text", nullable: false),
+                    ProductQuantity = table.Column<int>(type: "integer", nullable: false),
+                    Total = table.Column<decimal>(type: "numeric", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Baskets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Baskets_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Baskets_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "03514197-1232-4151-87a6-595ecc79eb3c", "ef034fa0-cf36-42f5-b0ad-551981c7e424", "Sales Person", "SALES PERSON" },
-                    { "219fdee0-3e18-48ff-bc94-d2a5170f93f5", "aeb45ff0-456a-43af-b82e-9692c84c95f7", "Customer", "CUSTOMER" },
-                    { "7bae305e-630b-44cf-8993-b37fb1d41c03", "4b8c5692-a1c2-4f43-812b-8e1027e97269", "Customer Service", "CUSTOMER SERVICE" },
-                    { "aa1223f6-a78a-4c7e-b735-2e5c95c81bf9", "3a2ed675-d9e5-4fe1-bfb7-1221f17d8b84", "Admin", "ADMIN" }
+                    { "0f4dd461-1d78-4f2c-a2be-847211b514b0", "0f571681-589c-4d22-a8c9-c2521431a86c", "Customer Service", "CUSTOMER SERVICE" },
+                    { "9e2cd9e2-f6b1-44cd-83ef-a95040c1db1f", "f775dce1-ea48-49e2-ab6d-28d9c6ff3acf", "Sales Person", "SALES PERSON" },
+                    { "ae8432ce-72a6-4dde-b1ce-17343e6b23a3", "6d6eb74d-a445-4864-9a7a-0167b62d0c9c", "Customer", "CUSTOMER" },
+                    { "c3303ae4-cbb4-4130-89e2-5e4bf14df236", "de748751-c546-4df4-8c55-222e48b4d45e", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -274,6 +302,16 @@ namespace E_Trade.Repository.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Baskets_AppUserId",
+                table: "Baskets",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Baskets_ProductId",
+                table: "Baskets",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -297,7 +335,7 @@ namespace E_Trade.Repository.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Baskets");
 
             migrationBuilder.DropTable(
                 name: "UserRefreshTokens");
@@ -307,6 +345,9 @@ namespace E_Trade.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Categories");

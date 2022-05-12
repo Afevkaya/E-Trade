@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace E_Trade.Repository.Migrations
 {
     [DbContext(typeof(ETradeDbContext))]
-    [Migration("20220428114015_initial")]
+    [Migration("20220511085235_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,29 +52,29 @@ namespace E_Trade.Repository.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aa1223f6-a78a-4c7e-b735-2e5c95c81bf9",
-                            ConcurrencyStamp = "3a2ed675-d9e5-4fe1-bfb7-1221f17d8b84",
+                            Id = "c3303ae4-cbb4-4130-89e2-5e4bf14df236",
+                            ConcurrencyStamp = "de748751-c546-4df4-8c55-222e48b4d45e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "219fdee0-3e18-48ff-bc94-d2a5170f93f5",
-                            ConcurrencyStamp = "aeb45ff0-456a-43af-b82e-9692c84c95f7",
+                            Id = "ae8432ce-72a6-4dde-b1ce-17343e6b23a3",
+                            ConcurrencyStamp = "6d6eb74d-a445-4864-9a7a-0167b62d0c9c",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "7bae305e-630b-44cf-8993-b37fb1d41c03",
-                            ConcurrencyStamp = "4b8c5692-a1c2-4f43-812b-8e1027e97269",
+                            Id = "0f4dd461-1d78-4f2c-a2be-847211b514b0",
+                            ConcurrencyStamp = "0f571681-589c-4d22-a8c9-c2521431a86c",
                             Name = "Customer Service",
                             NormalizedName = "CUSTOMER SERVICE"
                         },
                         new
                         {
-                            Id = "03514197-1232-4151-87a6-595ecc79eb3c",
-                            ConcurrencyStamp = "ef034fa0-cf36-42f5-b0ad-551981c7e424",
+                            Id = "9e2cd9e2-f6b1-44cd-83ef-a95040c1db1f",
+                            ConcurrencyStamp = "f775dce1-ea48-49e2-ab6d-28d9c6ff3acf",
                             Name = "Sales Person",
                             NormalizedName = "SALES PERSON"
                         });
@@ -142,6 +142,36 @@ namespace E_Trade.Repository.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("E_Trade.Core.Models.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("E_Trade.Core.Models.Category", b =>
@@ -376,6 +406,25 @@ namespace E_Trade.Repository.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("E_Trade.Core.Models.Basket", b =>
+                {
+                    b.HasOne("E_Trade.Core.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("E_Trade.Core.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("E_Trade.Core.Models.Product", b =>

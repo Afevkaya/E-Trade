@@ -22,6 +22,7 @@ namespace E_Trade.Repository
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
 
 
         // Db tablo config işlemleri

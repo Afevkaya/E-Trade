@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Trade.API.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;
@@ -50,9 +50,13 @@ namespace E_Trade.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Save(ProductDto productDto)
         {
+            /*
             var product = _mapper.Map<Product>(productDto);
             var productDtos = _mapper.Map<ProductDto>(await _service.AddAsync(product));
             return CreatActionResult<ProductDto>(CustomResponseDto<ProductDto>.Success(201, productDtos));
+            */
+
+            return CreatActionResult(await _service.AddAsyncTwo(productDto));
         }
 
         // PUT api/produts

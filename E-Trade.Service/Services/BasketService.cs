@@ -36,36 +36,63 @@ namespace E_Trade.Service.Services
                 throw new ArgumentNullException(nameof(basketDto));
             }
 
-            // dto -> entity
-            var basket = new Basket
-            {
-                ProductId = basketDto.ProductId,
-                AppUserId = basketDto.AppUserId,
-                ProductQuantity = basketDto.ProductQuantity,
-                Total = (basketDto.ProductQuantity) * (basketDto.ProductPrice)
-            };
+            var baskets = await _basketRepository.GetAllAsync();
+            Basket basket;
 
+            // Sepet Kontrol
+            if (baskets == null)
+            {
+                return CustomResponseDto<ResponseBasketDto>.Fail(500, "Server error");
+            }
+
+            var oldbasket = baskets.FirstOrDefault(x => x.ProductId == basketDto.ProductId);
+
+            // dto -> entity
+            if (oldbasket == null)
+            {
+                basket = new Basket();
+                basket.ProductId = basketDto.ProductId;
+                basket.AppUserId = basketDto.AppUserId;
+                basket.ProductQuantity = basketDto.ProductQuantity;
+                basket.Total = (basketDto.ProductQuantity) * (basketDto.ProductPrice);
+            }
+            else
+            {
+                basket = oldbasket;
+                basket.ProductQuantity += basketDto.ProductQuantity;
+                basket.Total = basket.Total + ((basketDto.ProductQuantity) * (basketDto.ProductPrice)); 
+            }
+            
             var product = await _productRepository.GetByIdAsync(basket.ProductId);
             var appUser = await _userManager.FindByIdAsync(basket.AppUserId);
 
-            // Kontroller
+            // Product Kontrol
             if (product == null)
             {
                 return CustomResponseDto<ResponseBasketDto>.Fail(404, "Product Not Found");
             }
 
+            // AppUser Kontrol
             if (appUser == null)
             {
                 return CustomResponseDto<ResponseBasketDto>.Fail(404, "User Not Found");
             }
 
+            // StockQuantity Kontrol
             if (product.StockQuantity < basket.ProductQuantity)
             {
                 return CustomResponseDto<ResponseBasketDto>.Fail(404, "There is no product in stock or you have added more than the in stock product.");
             }
 
-            product.StockQuantity -= basket.ProductQuantity;
-            await _basketRepository.AddAsync(basket);
+            product.StockQuantity -= basketDto.ProductQuantity;
+            if (oldbasket != null)
+            {
+                _basketRepository.Update(basket);
+            }
+            else
+            {
+                await _basketRepository.AddAsync(basket);
+            }
             _productRepository.Update(product);
             await _unitOfWork.CommitAsync();
 

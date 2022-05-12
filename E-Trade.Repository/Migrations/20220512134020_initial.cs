@@ -238,10 +238,10 @@ namespace E_Trade.Repository.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f4dd461-1d78-4f2c-a2be-847211b514b0", "0f571681-589c-4d22-a8c9-c2521431a86c", "Customer Service", "CUSTOMER SERVICE" },
-                    { "9e2cd9e2-f6b1-44cd-83ef-a95040c1db1f", "f775dce1-ea48-49e2-ab6d-28d9c6ff3acf", "Sales Person", "SALES PERSON" },
-                    { "ae8432ce-72a6-4dde-b1ce-17343e6b23a3", "6d6eb74d-a445-4864-9a7a-0167b62d0c9c", "Customer", "CUSTOMER" },
-                    { "c3303ae4-cbb4-4130-89e2-5e4bf14df236", "de748751-c546-4df4-8c55-222e48b4d45e", "Admin", "ADMIN" }
+                    { "096a620d-ada7-4ef7-9eca-bb0ebdbad630", "eb444bc8-512c-4429-8a45-c613f6fc713d", "Admin", "ADMIN" },
+                    { "2a36ac7d-a5ae-48bb-9064-795284841448", "12cde413-8070-46d4-9b64-68818cb36491", "Customer Service", "CUSTOMER SERVICE" },
+                    { "6e385d0a-d0d9-4b75-a619-ef8bf58ff47c", "a75a7553-28f7-474f-8e03-fc8d9fbc8eef", "Customer", "CUSTOMER" },
+                    { "8419ef55-136e-45f7-a089-73a2446f1e4c", "80e0919d-9273-4ca0-ba4b-4629875b2439", "Sales Person", "SALES PERSON" }
                 });
 
             migrationBuilder.InsertData(
@@ -258,10 +258,10 @@ namespace E_Trade.Repository.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "ImageUrl", "Name", "Price", "StockQuantity" },
                 values: new object[,]
                 {
-                    { 1, 1, "Bilgisayar", "https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1468&q=80", "Bilgisayar", 10000m, 10 },
-                    { 2, 1, "Mouse", "https://images.unsplash.com/photo-1563297007-0686b7003af7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1517&q=80", "Mouse", 300m, 20 },
-                    { 3, 2, "Buzdolabı", "https://images.unsplash.com/photo-1536353284924-9220c464e262?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80", "Buzdolabı", 7000m, 30 },
-                    { 4, 2, "Derin Dondurucu", "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=726&q=80", "Derin Dondurucu", 6000m, 40 }
+                    { 1, 1, "Bilgisayar", "https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1468&q=80", "Bilgisayar", 10000m, 100 },
+                    { 2, 1, "Mouse", "https://images.unsplash.com/photo-1563297007-0686b7003af7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1517&q=80", "Mouse", 300m, 200 },
+                    { 3, 2, "Buzdolabı", "https://images.unsplash.com/photo-1536353284924-9220c464e262?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80", "Buzdolabı", 7000m, 150 },
+                    { 4, 2, "Derin Dondurucu", "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=726&q=80", "Derin Dondurucu", 6000m, 140 }
                 });
 
             migrationBuilder.CreateIndex(

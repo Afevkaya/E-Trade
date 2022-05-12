@@ -25,24 +25,31 @@ namespace E_Trade.API.Controllers
         }
 
         [HttpGet("{id}")]
+        //[Authorize(Roles = "Customer")]
         public async Task<IActionResult> GetById(int id)
         {
             return CreatActionResult(await _basketService.GetByIdAsync(id));
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Customer")]
         public async Task<IActionResult> Save(CreateBasketDto createBasketDto)
         {
             return CreatActionResult(await _basketService.AddAsync(createBasketDto));
         }
 
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "Customer")]
         public async Task<IActionResult> Delete(int id)
         {
             return CreatActionResult(await _basketService.RemoveAsync(id));
         }
 
         [HttpGet("[action]/{userId}")]
+        //[Authorize(Roles = "Customer")]
+
+        // User local storage de tutulacak.
+        // userId local storage den gelecek.
         public async Task<IActionResult> GetByAppUserId(string userId)
         {
             return CreatActionResult(await _basketService.Where(x => x.AppUserId == userId));

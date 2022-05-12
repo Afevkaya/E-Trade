@@ -36,6 +36,7 @@ namespace E_Trade.Service.Services
                 throw new ArgumentNullException(nameof(basketDto));
             }
 
+            // dto -> entity
             var basket = new Basket
             {
                 ProductId = basketDto.ProductId,
@@ -44,23 +45,32 @@ namespace E_Trade.Service.Services
                 Total = (basketDto.ProductQuantity) * (basketDto.ProductPrice)
             };
 
-            await _basketRepository.AddAsync(basket);
-            await _unitOfWork.CommitAsync();
-            
             var product = await _productRepository.GetByIdAsync(basket.ProductId);
+            var appUser = await _userManager.FindByIdAsync(basket.AppUserId);
 
+            // Kontroller
             if (product == null)
             {
-                return CustomResponseDto<ResponseBasketDto>.Fail(404,"Product Not Found");
+                return CustomResponseDto<ResponseBasketDto>.Fail(404, "Product Not Found");
             }
-
-            var appUser = await _userManager.FindByIdAsync(basket.AppUserId);
 
             if (appUser == null)
             {
                 return CustomResponseDto<ResponseBasketDto>.Fail(404, "User Not Found");
             }
 
+            if (product.StockQuantity < basket.ProductQuantity)
+            {
+                return CustomResponseDto<ResponseBasketDto>.Fail(404, "There is no product in stock or you have added more than the in stock product.");
+            }
+
+            product.StockQuantity -= basket.ProductQuantity;
+            await _basketRepository.AddAsync(basket);
+            _productRepository.Update(product);
+            await _unitOfWork.CommitAsync();
+
+            
+            // entity -> dto
             var responseBasketDto = new ResponseBasketDto
             {
                 ProductName = product.Name,
@@ -77,8 +87,15 @@ namespace E_Trade.Service.Services
         public async Task<CustomResponseDto<IEnumerable<ResponseBasketDto>>> GetAllAsync()
         {
             var baskets = await _basketRepository.GetAllAsync();
+
+            // Kontrol
+            if(baskets == null)
+            {
+                return CustomResponseDto<IEnumerable<ResponseBasketDto>>.Fail(404, "Basket not found");
+            }
             var responseBasketDtos = new List<ResponseBasketDto>();
             
+            // entity -> dto
             foreach (var basket in baskets)
             {
                 var product = await _productRepository.GetByIdAsync(basket.ProductId);
@@ -100,6 +117,7 @@ namespace E_Trade.Service.Services
         // Basket Id'ye göre Listeleme
         public async Task<CustomResponseDto<ResponseBasketDto>> GetByIdAsync(int id)
         {
+            // Kontroller
             var basket = await _basketRepository.GetByIdAsync(id);
             if(basket == null)
             {
@@ -118,6 +136,7 @@ namespace E_Trade.Service.Services
                 return CustomResponseDto<ResponseBasketDto>.Fail(404, "Not Found");
             }
 
+            // entity -> model
             var responseBasketDto = new ResponseBasketDto
             {
                 ProductName = product.Name,
@@ -133,6 +152,8 @@ namespace E_Trade.Service.Services
         public async Task<CustomResponseDto<NoContentDto>> RemoveAsync(int id)
         {
             var basket = await _basketRepository.GetByIdAsync(id);
+
+            // Kontrol
             if(basket == null)
             {
                 return CustomResponseDto<NoContentDto>.Fail(404, "Not Found");
@@ -146,13 +167,16 @@ namespace E_Trade.Service.Services
         public async Task<CustomResponseDto<IEnumerable<ResponseBasketDto>>> Where(Expression<Func<Basket, bool>> expression)
         {
             var baskets = await _basketRepository.Where(expression).ToListAsync();
+
+            // Kontrol
             if(baskets == null)
             {
                 return CustomResponseDto<IEnumerable<ResponseBasketDto>>.Fail(404, "NotFound");
             }
 
-
             var responseBasketDtos = new List<ResponseBasketDto>();
+
+            // entity -> dto
             foreach(var basket in baskets)
             {
                 var appUser = await _userManager.FindByIdAsync(basket.AppUserId);

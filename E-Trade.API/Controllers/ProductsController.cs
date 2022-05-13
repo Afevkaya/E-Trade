@@ -56,7 +56,7 @@ namespace E_Trade.API.Controllers
             return CreatActionResult<ProductDto>(CustomResponseDto<ProductDto>.Success(201, productDtos));
             */
 
-            return CreatActionResult(await _service.AddAsyncTwo(productDto));
+            return CreatActionResult(await _service.AddUpdateAsync(productDto));
         }
 
         // PUT api/produts

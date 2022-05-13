@@ -25,7 +25,7 @@ namespace E_Trade.Service.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<CustomResponseDto<ProductDto>> AddAsyncTwo(ProductDto productDto)
+        public async Task<CustomResponseDto<ProductDto>> AddUpdateAsync(ProductDto productDto)
         {
 
             Product product;
@@ -34,7 +34,7 @@ namespace E_Trade.Service.Services
                 var products = _productRepository.GetAll();
                 var oldProduct = products.FirstOrDefault(p => p.Id == productDto.Id);
                 product = oldProduct;
-                product.StockQuantity = productDto.Quantity;
+                product.StockQuantity = productDto.StockQuantity;
                 _productRepository.Update(product);
             }
             else
@@ -52,7 +52,7 @@ namespace E_Trade.Service.Services
                 Price = product.Price,
                 Description = product.Description,
                 ImageUrl = product.ImageUrl,
-                Quantity = product.StockQuantity,
+                StockQuantity = product.StockQuantity,
                 CategoryId = product.CategoryId,
             };
             return CustomResponseDto<ProductDto>.Success(200, newProductDto);

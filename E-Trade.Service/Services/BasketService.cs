@@ -42,7 +42,7 @@ namespace E_Trade.Service.Services
             // Sepet Kontrol
             if (baskets == null)
             {
-                return CustomResponseDto<ResponseBasketDto>.Fail(500, "Server error");
+                throw new Exception("Server Error");
             }
 
             var oldbasket = baskets.FirstOrDefault(x => x.ProductId == basketDto.ProductId);

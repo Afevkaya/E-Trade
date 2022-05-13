@@ -8,9 +8,10 @@ namespace E_Trade.API.Middlewares
     public static class UseCustomExceptionHandler
     {
         // Custom Exception middleware
+        // IApplicationBuilder -> Middleware yazabilmek için kullanılan interface
         public static void UseCustomException(this IApplicationBuilder app)
         {
-            // Kullanılan middleware
+            // UseExceptionHandler -> .Net Core Framework'ünün Hataları yakalamak için hazır sunduğu middleware  
             app.UseExceptionHandler(config =>
             {
                 // Kesici middleware

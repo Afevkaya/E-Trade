@@ -46,7 +46,7 @@ namespace E_Trade.Service.Services
         {
             return await _repository.GetAll().ToListAsync();
         }
-
+        
         public async Task<T> GetByIdAsync(int id)
         {
             var hasProduct = await _repository.GetByIdAsync(id);

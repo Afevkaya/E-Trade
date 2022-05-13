@@ -16,6 +16,7 @@ using System.Reflection;
 using E_Trade.Core.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using E_Trade.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -114,6 +115,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();   // Custom Exception middleware
 
 app.UseAuthentication();    // Doðrulama
 

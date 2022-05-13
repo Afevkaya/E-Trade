@@ -1,6 +1,7 @@
 ﻿using E_Trade.Core.Repositories;
 using E_Trade.Core.Services;
 using E_Trade.Core.UnitOfWorks;
+using E_Trade.Service.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -48,6 +49,11 @@ namespace E_Trade.Service.Services
 
         public async Task<T> GetByIdAsync(int id)
         {
+            var hasProduct = await _repository.GetByIdAsync(id);
+            if (hasProduct == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name}({id} not found)");
+            }
             return await _repository.GetByIdAsync(id);
         }
 

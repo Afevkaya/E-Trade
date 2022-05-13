@@ -27,7 +27,6 @@ namespace E_Trade.Service.Services
 
         public async Task<CustomResponseDto<ProductDto>> AddUpdateAsync(ProductDto productDto)
         {
-
             Product product;
             if(productDto.Id > 0)
             {

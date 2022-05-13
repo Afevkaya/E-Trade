@@ -52,7 +52,7 @@ namespace E_Trade.Service.Services
             var hasProduct = await _repository.GetByIdAsync(id);
             if (hasProduct == null)
             {
-                throw new NotFoundException($"{typeof(T).Name}({id} not found)");
+                throw new NotFoundException($"{typeof(T).Name}({id}) not found");
             }
             return await _repository.GetByIdAsync(id);
         }

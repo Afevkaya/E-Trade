@@ -4,6 +4,7 @@ using E_Trade.Core.Models;
 using E_Trade.Core.Repositories;
 using E_Trade.Core.Services;
 using E_Trade.Core.UnitOfWorks;
+using E_Trade.Service.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,18 +45,18 @@ namespace E_Trade.Service.Services
             var appUser = await _userManager.FindByEmailAsync(loginDto.Email);
             if(appUser == null)
             {
-                return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrong");
+                throw new NotFoundException($"{loginDto.Email} or {loginDto.Password} wrong");
             }
 
             if(!await _userManager.CheckPasswordAsync(appUser, loginDto.Password))
             {
-                return CustomResponseDto<TokenDto>.Fail(400, "Email or password wrong!");
+                throw new NotFoundException($"{loginDto.Email} or {loginDto.Password} wrong");
             }
 
             var tokenDto = await _tokenService.CreateToken(appUser);
             if (tokenDto == null)
             {
-                return CustomResponseDto<TokenDto>.Fail(500, "An error occurred");
+                throw new Exception("An error occurred");
             }
 
             // Db'de user'a ait bir refresh token olup olmadığını kontrol eden if else bloğu
@@ -91,7 +92,7 @@ namespace E_Trade.Service.Services
             var existRefreshToken = await _genericRepository.Where(x=>x.Code == refreshToken).SingleOrDefaultAsync();
             if(existRefreshToken == null)
             {
-                return CustomResponseDto<TokenDto>.Fail(404, "Refresh Token Not Found");
+                throw new NotFoundException($"{existRefreshToken} not found");
             }
 
             // userApp kontrolü
@@ -99,7 +100,7 @@ namespace E_Trade.Service.Services
             var appUser = await _userManager.FindByIdAsync(existRefreshToken.UserId);
             if(appUser == null)
             {
-                return CustomResponseDto<TokenDto>.Fail(404, "User Id Not Found");
+                throw new NotFoundException($"{appUser} not found");
             }
 
             // Token üretme
@@ -132,7 +133,7 @@ namespace E_Trade.Service.Services
             var existRefreshToken = await _genericRepository.Where(x=>x.Code == refreshToken).SingleOrDefaultAsync();
             if(existRefreshToken == null)
             {
-                return CustomResponseDto<NoContentDto>.Fail(404, "Refresh Token Not Found");
+                throw new NotFoundException($"{existRefreshToken} not found");
             }
 
             // db'den silme

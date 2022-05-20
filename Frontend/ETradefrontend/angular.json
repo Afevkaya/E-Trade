@@ -32,6 +32,7 @@
               "../ETradefrontend/node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
             "scripts": [
+              "../ETradefrontend/node_modules/jquery/dist/jquery.min.js",
               "../ETradefrontend/node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },

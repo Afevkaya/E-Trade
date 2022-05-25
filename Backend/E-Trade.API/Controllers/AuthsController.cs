@@ -10,7 +10,7 @@ namespace E_Trade.API.Controllers
 
         public AuthsController(IAuthenticationService authenticationService)
         {
-            _authenticationService = authenticationService;
+            _authenticationService = authenticationService; 
         }
 
         [HttpPost("[action]")]

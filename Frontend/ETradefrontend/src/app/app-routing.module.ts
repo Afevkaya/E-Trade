@@ -4,36 +4,33 @@ import { LoginComponent } from './auth-pages/login/login.component';
 import { SigninComponent } from './auth-pages/signin/signin.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { HomeComponent } from './main-pages/home/home.component';
+import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
 
 const routes: Routes = [
-  {
-    // www.etrade.com
-    path:"",
-    component: MainLayoutComponent
-  },
-
-  {
-    // www.etrade.com/auth
-    path:"auth",
-    component:AuthLayoutComponent,
+  // www.etrade.com
+  {path: "", component: MainLayoutComponent,
     children: [
-      {
-        // www.etrade.com/auth
-        path: "",
-        component: LoginComponent,
-      },
 
-      {
-        // www.etrade.com/auth/login
-        path: "login",
-        component: LoginComponent,
-      },
+      // www.etrade.com
+      {path: "", component: HomeComponent},
 
-      {
-        // www.etrade.com/auth/signin
-        path: "signin",
-        component: SigninComponent
-      },
+      // www.etrade.com/myaccount
+      {path: "myaccount", component: MyaccountComponent}
+    ]},
+
+  // www.etrade.com/auth
+  {path: "auth", component:AuthLayoutComponent,
+    children: [
+
+      // www.etrade.com/auth
+      {path: "",component: LoginComponent},
+
+      // www.etrade.com/auth/login
+      {path: "login",component: LoginComponent},
+
+      // www.etrade.com/auth/signin
+      {path: "signin",component: SigninComponent},
     ]
   }
 ];

@@ -7,8 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { SigninComponent } from './auth-pages/signin/signin.component';
 import { LoginComponent } from './auth-pages/login/login.component';
+import { SigninComponent } from './auth-pages/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +16,8 @@ import { LoginComponent } from './auth-pages/login/login.component';
     AuthLayoutComponent,
     AdminLayoutComponent,
     MainLayoutComponent,
-    SigninComponent,
     LoginComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,14 @@
-import { AppComponent } from './app.component';
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { SigninComponent } from './auth-pages/signin/signin.component';
+import { LoginComponent } from './auth-pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     AuthLayoutComponent,
     AdminLayoutComponent,
     MainLayoutComponent,
+    SigninComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

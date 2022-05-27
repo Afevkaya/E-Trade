@@ -13,8 +13,9 @@ export class ProductService {
   }
 
   // Tüm productları getirme
+  // Json tipinde bir obje dönüyor.
   getProducts(){
-    return this.httpClient.get<any[]>(this.apiUrl);
+    return this.httpClient.get<any>(this.apiUrl);
   }
 
   // id'ye göre product getirme

@@ -13,6 +13,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { HomeComponent } from './main-pages/home/home.component';
 import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
 import { MainNavComponent } from './nav/main-nav/main-nav.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { MainNavComponent } from './nav/main-nav/main-nav.component';
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

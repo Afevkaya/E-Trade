@@ -12,6 +12,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { HomeComponent } from './main-pages/home/home.component';
 import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
+import { MainNavComponent } from './nav/main-nav/main-nav.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
     SigninComponent,
     HomeComponent,
     MyaccountComponent,
+    MainNavComponent,
   ],
   imports: [
     BrowserModule,

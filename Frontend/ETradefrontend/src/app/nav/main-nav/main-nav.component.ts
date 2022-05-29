@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',
@@ -15,7 +15,7 @@ export class MainNavComponent implements OnInit {
       if (x instanceof NavigationEnd) {
         if (x.url.indexOf('anasayfa') > 0) {
           this.pageActive = MainPage.home;
-        } else if (x.url.indexOf('myaccount') > 0) {
+        } else if (x.url.indexOf('hesabim') > 0) {
           this.pageActive = MainPage.myaccount;
         } else {
           this.pageActive = MainPage.home;

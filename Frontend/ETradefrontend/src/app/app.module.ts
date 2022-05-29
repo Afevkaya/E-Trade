@@ -14,6 +14,8 @@ import { HomeComponent } from './main-pages/home/home.component';
 import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
 import { MainNavComponent } from './nav/main-nav/main-nav.component';
 import { ProductService } from './services/product.service';
+import { CategoryService } from './services/category.service';
+import { MenuCategoryComponent } from './components/menu-category/menu-category.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ProductService } from './services/product.service';
     HomeComponent,
     MyaccountComponent,
     MainNavComponent,
+    MenuCategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,7 @@ import { ProductService } from './services/product.service';
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [ProductService],
+  providers: [ProductService,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

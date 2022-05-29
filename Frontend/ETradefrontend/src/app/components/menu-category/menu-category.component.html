@@ -1,0 +1,11 @@
+<div class="card border-primary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Kategoriler</div>
+  <div class="card-body text-primary">
+    <h5 *ngFor="let category of categories">
+      <strong>
+        <!-- kategori/elektronik/1 -->
+        <a [routerLink]="['/kategori',category.name,category.id]" class="btn btn-link"><i class="fa fa-arrow-circle-right"> {{category.name}}</i></a>
+      </strong>
+    </h5>
+  </div>
+</div>

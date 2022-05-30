@@ -10,11 +10,12 @@ import { MainLayoutComponent } from '../layouts/main-layout/main-layout.componen
 import { MainNavComponent } from '../nav/main-nav/main-nav.component';
 import { HomeComponent } from './home/home.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
+import { ProductComponent } from './product/product.component';
 
 
 
 @NgModule({
-  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent,MyaccountComponent],
+  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent,MyaccountComponent, ProductComponent],
   imports: [
     CommonModule,
     BrowserModule,

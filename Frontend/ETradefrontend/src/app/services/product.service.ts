@@ -19,4 +19,10 @@ export class ProductService {
       this.loading = false;
     }));
   }
+  getProduct(id:number){
+    let newApiUrl = `${this.apiUrl}/${id}`;
+    return this.httpClient.get<any>(newApiUrl).pipe(tap(x=>{
+      this.loading = false;
+    }));
+  }
 }

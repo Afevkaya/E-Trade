@@ -15,8 +15,8 @@ export class ProductService {
   // Json tipinde bir obje dönüyor.
   // loading değişkeni datanın gelip gelmesiğini kontrol ediyor.
   getProducts(){
-    this.httpClient.get<any>(this.apiUrl).pipe(tap(x=>{
+    return this.httpClient.get<any>(this.apiUrl).pipe(tap(x=>{
       this.loading = false;
-    }))
+    }));
   }
 }

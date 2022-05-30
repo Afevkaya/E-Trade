@@ -1,2 +1,6 @@
 <!-- Routing mekanizması ile hesabımıza ait bilgilerin gösterileceği myaccount componentin html dosyası -->
+<!-- Bir component den başka bir componnete statik bir veri taşımamız gerekirse html tarafında aşagıdaki gibi bir kullanım yapmamız gerekir -->
+
+<!-- myaccount componentinden page-title componentine statik bir veri taşıyoruz. -->
+<app-page-title [title]="'Hesabim'"></app-page-title>
 <p>myaccount works!</p>

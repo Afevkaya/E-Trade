@@ -1,1 +1,54 @@
-<p>products works!</p>
+<div *ngIf="products.length>0;else emptyTemplate">
+  <div *ngFor="let product of products">
+    <ng-container
+      *ngTemplateOutlet="horizontalTemplate;context:{id:product.id,categoryId:product.categoryId,stockQuantity:product.stockQuantity,price:product.price,description:product.description,name:product.name,imageUrl:product.imageUrl}">
+    </ng-container>
+  </div>
+</div>
+<ng-template #emptyTemplate>
+  <div class="alert alert-danger" role="alert">
+    Ürün bulunamadi...
+  </div>
+</ng-template>
+
+<ng-template let-id="id" let-categoryId="categoryId" let-stockQuantity="stockQuantity" let-price="price"
+  let-description="description" let-name="name" let-imageUrl="imageUrl" #horizontalTemplate>
+  <div class="card bg-light border-primary mb-2">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img width="200px" height="300px" [src]="imageUrl" class="card-img">
+        </div>
+        <div class="col-md-8">
+          <h5 class="card-title">{{name}}</h5>
+          <p class="card-text">{{description}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-transparent border-primary">
+      <h4 style="display: inline-block;">
+        <span class="badge rounded-pill bg-success">
+          <i class="fa fa-money-bill"></i> Fiyat: {{price}}
+        </span>
+      </h4>
+
+      <span style="margin-right: 1rem;"></span>
+
+      <h4 style="display: inline-block;">
+        <span class="badge rounded-pill bg-secondary">
+          Adet: {{stockQuantity}}
+        </span>
+      </h4>
+
+      <span style="margin-right: 1rem;"></span>
+
+      <h4 style="display: inline-block;">
+        <span class="badge rounded-pill bg-danger">
+          Category Id: {{categoryId}}
+        </span>
+      </h4>
+      <a [routerLink]="['/ürün',id]" class="btn btn-primary btn-sm float-end"><i class="fa fa-circle-info"></i> Detay
+        Sayfası</a>
+    </div>
+  </div>
+</ng-template>

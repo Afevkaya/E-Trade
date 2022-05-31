@@ -33,9 +33,12 @@ namespace E_Trade.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            /*
             var product = await _service.GetByIdAsync(id);
             var productDto = _mapper.Map<ProductDto>(product);
             return CreatActionResult<ProductDto>(CustomResponseDto<ProductDto>.Success(200, productDto));
+            */
+            return CreatActionResult<ProductWithCategoryDto>(await _service.GetProductWithCategory(id));
         }
 
         // GET api/products/ProductsWithCategory

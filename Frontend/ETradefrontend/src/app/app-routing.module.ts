@@ -6,6 +6,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { HomeComponent } from './main-pages/home/home.component';
 import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
+import { ProductComponent } from './main-pages/product/product.component';
 
 // Url deki yazana göre gösterilecek componentleri belirlediğimiz router mekanizması.
 const routes: Routes = [
@@ -18,7 +19,9 @@ const routes: Routes = [
       {path: "", component: HomeComponent},
 
       // www.etrade.com/hesabim
-      {path: "hesabim", component: MyaccountComponent}
+      {path: "hesabim", component: MyaccountComponent},
+
+      {path:"ürün/:id", component: ProductComponent}
     ]
   },
 

@@ -72,6 +72,12 @@ namespace E_Trade.Service.Services
             var productsWithCategoryDto = _mapper.Map<List<ProductsWithCategoryDto>>(products);
             return CustomResponseDto<List<ProductsWithCategoryDto>>.Success(200, productsWithCategoryDto); 
         }
-        
+
+        public async Task<CustomResponseDto<ProductWithCategoryDto>> GetProductWithCategory(int id)
+        {
+            var product = await _productRepository.GetProductWithCategory(id);
+            var productWithCategoryDto = _mapper.Map<ProductWithCategoryDto>(product);
+            return CustomResponseDto<ProductWithCategoryDto>.Success(200, productWithCategoryDto);
+        }
     }
 }

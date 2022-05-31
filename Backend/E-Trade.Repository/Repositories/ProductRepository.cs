@@ -17,5 +17,10 @@ namespace E_Trade.Repository.Repositories
         {
             return await _dbContext.Products.Include(x => x.Category).ToListAsync();
         }
+
+        public async Task<Product> GetProductWithCategory(int id)
+        {
+            return await _dbContext.Products.Include(x => x.Category).Where(x => x.Id == id).SingleOrDefaultAsync();
+        }
     }
 }

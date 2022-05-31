@@ -12,5 +12,6 @@ namespace E_Trade.Core.Services
         //Task<List<ProductsWithCategoryDto>> GetProductsWithCategory();
         Task<CustomResponseDto<List<ProductsWithCategoryDto>>> GetProductsWithCategory(); 
         Task<CustomResponseDto<ProductDto>> AddUpdateAsync(ProductDto productDto);
+        Task<CustomResponseDto<ProductWithCategoryDto>> GetProductWithCategory(int id);
     }
 }

@@ -9,7 +9,7 @@
     <h5 *ngFor="let category of categories">
       <strong>
         <!-- kategori/elektronik/1 -->
-        <a [routerLink]="['/kategori',category.name,category.id]" class="btn btn-link"><i class="fa fa-arrow-circle-right"> {{category.name}}</i></a>
+        <a [routerLink]="['/kategori',category.name | urlformat ,category.id]" class="btn btn-link"><i class="fa fa-arrow-circle-right"> {{category.name}}</i></a>
       </strong>
     </h5>
   </div>

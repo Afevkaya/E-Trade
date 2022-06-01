@@ -26,6 +26,7 @@ namespace E_Trade.API.Controllers
             var products = await _service.GetAllAsync();
             var productsDto = _mapper.Map<List<ProductDto>>(products);
             //return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productsDto));
+            System.Threading.Thread.Sleep(5000);
             return CreatActionResult<List<ProductDto>>(CustomResponseDto<List<ProductDto>>.Success(200, productsDto));
         }
 
@@ -38,6 +39,7 @@ namespace E_Trade.API.Controllers
             var productDto = _mapper.Map<ProductDto>(product);
             return CreatActionResult<ProductDto>(CustomResponseDto<ProductDto>.Success(200, productDto));
             */
+            System.Threading.Thread.Sleep(5000);
             return CreatActionResult<ProductWithCategoryDto>(await _service.GetProductWithCategory(id));
         }
 
@@ -78,6 +80,15 @@ namespace E_Trade.API.Controllers
             var product = await _service.GetByIdAsync(id);
             await _service.Remove(product);
             return CreatActionResult<NoContentDto>(CustomResponseDto<NoContentDto>.Success(204));
+        }
+
+        [HttpGet]
+        [Route("[action]/{searchText}")]
+        public IActionResult Search(string searchText)
+        {
+            var products =  _service.Where(s => s.Name.Contains(searchText));
+            var productsDto = _mapper.Map<List<ProductDto>>(products);
+            return CreatActionResult<List<ProductDto>>(CustomResponseDto<List<ProductDto>>.Success(200, productsDto));
         }
     }
 }

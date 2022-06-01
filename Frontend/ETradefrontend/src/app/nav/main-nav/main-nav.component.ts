@@ -25,6 +25,15 @@ export class MainNavComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  search(searchText:string): void | false{
+    if(searchText == "" || searchText == null || searchText == undefined){
+      this.router.navigateByUrl("");
+    }
+    else{
+      this.router.navigateByUrl(`/arama?s=${searchText}`);
+    }
+  }
 }
 
 enum MainPage {

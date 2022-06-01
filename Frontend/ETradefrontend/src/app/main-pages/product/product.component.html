@@ -31,10 +31,10 @@
 
 
 <div class="card text-dark bg-white border-danger mt-2" *ngIf="!productService.loading">
-  <div class="card-header bg-info text-center">
+  <div class="card-header bg-dark text-center border-danger">
     <h1 class="card-title text-white">{{product.name | uppercase}}</h1>
   </div>
-  <div class="card-body bg-transparent">
+  <div class="card-body bg-white">
     <div class="row">
       <div class="col-md-4">
         <img width="200px" height="300px" [src]="product.imageUrl" class="card-img">
@@ -44,9 +44,9 @@
       </div>
     </div>
   </div>
-  <div class="card-footer bg-info border-danger">
+  <div class="card-footer bg-dark border-danger">
     <h3 style="display: inline-block;">
-      <span class="badge rounded-pill bg-primary">
+      <span class="badge rounded-pill bg-white text-dark">
         <i class="fa fa-money-bill"></i> Ürün Fiyat: {{product.price}} TL
       </span>
     </h3>
@@ -54,7 +54,7 @@
     <span style="margin-right: 1rem;"></span>
 
     <h3 style="display: inline-block;">
-      <span class="badge rounded-pill bg-primary">
+      <span class="badge rounded-pill bg-white text-dark">
         Ürün Adet: {{product.stockQuantity}}
       </span>
     </h3>
@@ -62,7 +62,7 @@
     <span style="margin-right: 1rem;"></span>
 
     <h3 style="display: inline-block;">
-      <span class="badge rounded-pill bg-primary">
+      <span class="badge rounded-pill bg-white text-dark">
         Kategori: {{category.name}}
       </span>
     </h3>

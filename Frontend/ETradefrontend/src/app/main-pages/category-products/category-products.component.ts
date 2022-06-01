@@ -14,14 +14,19 @@ export class CategoryProductsComponent implements OnInit {
   constructor(private route:ActivatedRoute, private categoryService:CategoryService, private productService:ProductService) { }
   products:Product[] = [];
   categoryId!:number;
+  ajax:any;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>{
+      if (this.ajax != null) {
+        this.ajax.unsubscribe();
+      }
       this.productService.loading = true;
+      this.products = [];
       if (params.get("id")) {
         this.categoryId = Number(params.get("id"));
       }
-      this.categoryService.getCategoryWithProducts(this.categoryId).subscribe(result=>{
+      this.ajax = this.categoryService.getCategoryWithProducts(this.categoryId).subscribe(result=>{
         this.products = result.data.products;
       });
     });

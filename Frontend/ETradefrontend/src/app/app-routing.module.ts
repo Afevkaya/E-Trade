@@ -21,7 +21,7 @@ const routes: Routes = [
       // www.etrade.com/hesabim
       {path: "hesabim", component: MyaccountComponent},
 
-      {path:"ürün/:id", component: ProductComponent}
+      {path:"ürün/:name/:id", component: ProductComponent}
     ]
   },
 

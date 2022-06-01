@@ -4,6 +4,7 @@ import { LoginComponent } from './auth-pages/login/login.component';
 import { SigninComponent } from './auth-pages/signin/signin.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { CategoryProductsComponent } from './main-pages/category-products/category-products.component';
 import { HomeComponent } from './main-pages/home/home.component';
 import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
 import { ProductComponent } from './main-pages/product/product.component';
@@ -21,7 +22,9 @@ const routes: Routes = [
       // www.etrade.com/hesabim
       {path: "hesabim", component: MyaccountComponent},
 
-      {path:"ürün/:name/:id", component: ProductComponent}
+      {path:"ürün/:name/:id", component: ProductComponent},
+
+      {path:"kategori/:name/:id",component: CategoryProductsComponent}
     ]
   },
 

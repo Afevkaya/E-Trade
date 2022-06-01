@@ -11,11 +11,12 @@ import { MainNavComponent } from '../nav/main-nav/main-nav.component';
 import { HomeComponent } from './home/home.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ProductComponent } from './product/product.component';
+import { CategoryProductsComponent } from './category-products/category-products.component';
 
 
 
 @NgModule({
-  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent,MyaccountComponent, ProductComponent],
+  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent,MyaccountComponent, ProductComponent, CategoryProductsComponent],
   imports: [
     CommonModule,
     BrowserModule,

@@ -8,44 +8,48 @@ import { CategoryProductsComponent } from './main-pages/category-products/catego
 import { HomeComponent } from './main-pages/home/home.component';
 import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
 import { ProductComponent } from './main-pages/product/product.component';
+import { SearchComponent } from './main-pages/search/search.component';
 
 // Url deki yazana göre gösterilecek componentleri belirlediğimiz router mekanizması.
 const routes: Routes = [
-
   // www.etrade.com
-  {path: "", component: MainLayoutComponent,
+  {
+    path: '',
+    component: MainLayoutComponent,
     children: [
-
       // www.etrade.com
-      {path: "", component: HomeComponent},
+      { path: '', component: HomeComponent },
 
       // www.etrade.com/hesabim
-      {path: "hesabim", component: MyaccountComponent},
+      { path: 'hesabim', component: MyaccountComponent },
 
-      {path:"ürün/:name/:id", component: ProductComponent},
+      { path: 'ürün/:name/:id', component: ProductComponent },
 
-      {path:"kategori/:name/:id",component: CategoryProductsComponent}
-    ]
+      { path: 'kategori/:name/:id', component: CategoryProductsComponent },
+
+      { path: 'arama', component: SearchComponent },
+    ],
   },
 
   // www.etrade.com/auth
-  {path: "auth", component:AuthLayoutComponent,
+  {
+    path: 'auth',
+    component: AuthLayoutComponent,
     children: [
-
       // www.etrade.com/auth
-      {path: "",component: LoginComponent},
+      { path: '', component: LoginComponent },
 
       // www.etrade.com/auth/login
-      {path: "login",component: LoginComponent},
+      { path: 'login', component: LoginComponent },
 
       // www.etrade.com/auth/signin
-      {path: "signin",component: SigninComponent},
-    ]
-  }
+      { path: 'signin', component: SigninComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

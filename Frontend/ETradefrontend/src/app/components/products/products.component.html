@@ -72,7 +72,7 @@
           Category Id: {{categoryId}}
         </span>
       </h4>
-      <a [routerLink]="['/ürün',id]" class="btn btn-primary btn-sm float-end"><i class="fa fa-circle-info"></i> Detay
+      <a [routerLink]="['/ürün',name | urlformat ,id]" class="btn btn-primary btn-sm float-end"><i class="fa fa-circle-info"></i> Detay
         Sayfası</a>
     </div>
   </div>

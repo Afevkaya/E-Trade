@@ -1,6 +1,6 @@
 <div class="card bg-light mt-2" *ngIf="productService.loading">
   <div class="card-body text-center">
-
+    <h2>Ürün geliyor...</h2>
     <div class="spinner-grow text-primary" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
@@ -32,7 +32,7 @@
 
 <div class="card text-dark bg-white border-danger mt-2" *ngIf="!productService.loading">
   <div class="card-header bg-info text-center">
-    <h1 class="card-title text-white">{{product.name}}</h1>
+    <h1 class="card-title text-white">{{product.name | uppercase}}</h1>
   </div>
   <div class="card-body bg-transparent">
     <div class="row">

@@ -18,7 +18,7 @@ export class AdminProductListComponent implements OnInit {
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(result=>{
+    this.productService.getProductsWithCategory().subscribe(result=>{
       //this.products = result.data;
       this.dataSource = new MatTableDataSource<Product>(result.data);
     })

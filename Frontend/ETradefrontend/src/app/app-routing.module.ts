@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminHomeComponent } from './admin-pages/admin-home/admin-home.component';
+import { AdminProductAddComponent } from './admin-pages/product/admin-product-add/admin-product-add.component';
+import { AdminProductListComponent } from './admin-pages/product/admin-product-list/admin-product-list.component';
+import { AdminProductUpdateComponent } from './admin-pages/product/admin-product-update/admin-product-update.component';
+import { AdminProductComponent } from './admin-pages/product/admin-product/admin-product.component';
 import { LoginComponent } from './auth-pages/login/login.component';
 import { SigninComponent } from './auth-pages/signin/signin.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { CategoryProductsComponent } from './main-pages/category-products/category-products.component';
@@ -29,6 +35,34 @@ const routes: Routes = [
 
       { path: 'arama', component: SearchComponent },
     ],
+  },
+  {
+    // www.etrade.com/admin
+    path: 'admin', component: AdminLayoutComponent,
+    children: [
+
+      // www.etrade.com/admin
+      {path: '',component: AdminHomeComponent},
+
+      // www.etrade.com/admin/anasayfa
+      {path: 'anasayfa', component: AdminHomeComponent},
+
+      {
+        // www.etrade.com/admin/urun
+        path: 'urun', component: AdminProductComponent,
+        children: [
+
+          // www.etrade.com/admin/urun/ekle
+          {path: 'ekle', component: AdminProductAddComponent},
+
+          // www.etrade.com/admin/urun/guncelle/2
+          {path: 'guncelle/:id', component: AdminProductUpdateComponent},
+
+          // www.etrade.com/admin/urun/liste
+          {path: 'liste', component: AdminProductListComponent}
+        ]
+      }
+    ]
   },
 
   // www.etrade.com/auth

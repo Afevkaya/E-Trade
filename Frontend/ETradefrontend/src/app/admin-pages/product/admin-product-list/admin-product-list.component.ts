@@ -11,7 +11,7 @@ import { Product } from "../../../models/product";
 })
 export class AdminProductListComponent implements OnInit {
 
-  displayColumns: string[] = ['name','price','description','imageUrl','stockQuantity','categoryId'];
+  displayColumns: string[] = ['imageUrl','name','price','description','stockQuantity','categoryId','category'];
   dataSource:any;
   products:Product[] = [];
   @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator;
@@ -20,7 +20,9 @@ export class AdminProductListComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProductsWithCategory().subscribe(result=>{
       //this.products = result.data;
+      //console.log(result.data);
       this.dataSource = new MatTableDataSource<Product>(result.data);
+      this.dataSource.paginator = this.paginator;
     })
   }
 

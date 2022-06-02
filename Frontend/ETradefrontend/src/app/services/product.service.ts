@@ -37,4 +37,8 @@ export class ProductService {
       this.loading = false;
     }));
   }
+  getProductsWithCategory(){
+    let newApiUrl = `${this.apiUrl}/ProductsWithCategory`
+    return this.httpClient.get<any>(newApiUrl);
+  }
 }

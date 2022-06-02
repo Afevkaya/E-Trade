@@ -35,6 +35,6 @@ export class ProductService {
     let newApiUrl = `${this.apiUrl}/Search/${searchText}`;
     return this.httpClient.get<any>(newApiUrl).pipe(tap(x=>{
       this.loading = false;
-    }))
+    }));
   }
 }

@@ -12,6 +12,7 @@ export class SearchComponent implements OnInit {
   products: Product[] = [];
   searchText!: string;
   ajax: any;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService

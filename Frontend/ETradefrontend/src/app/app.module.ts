@@ -3,13 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 import { MainModule } from './main-pages/main.module';
+import { AdminModule } from "./admin-pages/admin.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { LoginComponent } from "./auth-pages/login/login.component";
 import { SigninComponent } from "./auth-pages/signin/signin.component";
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+
 
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
@@ -19,7 +20,6 @@ import { CategoryService } from './services/category.service';
   declarations: [
     AppComponent,
     AuthLayoutComponent,
-    AdminLayoutComponent,
     LoginComponent,
     SigninComponent,
   ],
@@ -28,7 +28,8 @@ import { CategoryService } from './services/category.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MainModule
+    MainModule,
+    AdminModule
   ],
   providers: [ProductService,CategoryService],
   bootstrap: [AppComponent]

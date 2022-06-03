@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { tap } from "rxjs/operators";
+import { Product } from '../models/product';
 
 @Injectable()
 export class ProductService {
@@ -40,5 +41,9 @@ export class ProductService {
   getProductsWithCategory(){
     let newApiUrl = `${this.apiUrl}/ProductsWithCategory`
     return this.httpClient.get<any>(newApiUrl);
+  }
+
+  addProduct(product:Product){
+    return this.httpClient.post<any>(`${this.apiUrl}`,product);
   }
 }

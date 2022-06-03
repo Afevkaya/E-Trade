@@ -13,9 +13,19 @@ import { AdminProductAddComponent } from './product/admin-product-add/admin-prod
 import { AdminProductUpdateComponent } from './product/admin-product-update/admin-product-update.component';
 
 @NgModule({
-  declarations: [AdminLayoutComponent, AdminNavComponent, AdminHomeComponent, AdminProductComponent, AdminProductListComponent, AdminProductAddComponent, AdminProductUpdateComponent],
+  declarations: [
+    AdminLayoutComponent,
+    AdminNavComponent,
+    AdminHomeComponent,
+    AdminProductComponent,
+    AdminProductListComponent,
+    AdminProductAddComponent,
+    AdminProductUpdateComponent],
   imports: [
-    CommonModule, AppRoutingModule, MaterialModule, ComponentsModule
+    CommonModule,
+    AppRoutingModule,
+    MaterialModule,
+    ComponentsModule
   ]
 })
 export class AdminModule { }

@@ -26,7 +26,7 @@ namespace E_Trade.API.Controllers
             var products = await _service.GetAllAsync();
             var productsDto = _mapper.Map<List<ProductDto>>(products);
             //return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productsDto));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(3000);
             return CreatActionResult<List<ProductDto>>(CustomResponseDto<List<ProductDto>>.Success(200, productsDto));
         }
 
@@ -39,7 +39,7 @@ namespace E_Trade.API.Controllers
             var productDto = _mapper.Map<ProductDto>(product);
             return CreatActionResult<ProductDto>(CustomResponseDto<ProductDto>.Success(200, productDto));
             */
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(3000);
             return CreatActionResult<ProductWithCategoryDto>(await _service.GetProductWithCategory(id));
         }
 
@@ -68,7 +68,8 @@ namespace E_Trade.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(ProductDto productDto)
         {
-            var product = _mapper.Map<Product>(productDto);
+            var product = await _service.GetByIdAsync(productDto.Id);
+            product = _mapper.Map<Product>(productDto);
             await _service.Update(product);
             return CreatActionResult<NoContentDto>(CustomResponseDto<NoContentDto>.Success(204));
         }

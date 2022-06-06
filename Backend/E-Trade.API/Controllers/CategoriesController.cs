@@ -40,6 +40,7 @@ namespace E_Trade.API.Controllers
         public async Task<IActionResult> GetCategoryWithProducts(int id)
         {
             //return CreatActionResult<CategoryByIdWithProductsDto>(CustomResponseDto<CategoryByIdWithProductsDto>.Success(200, await _categoryService.GetSingleCategoryByIdProducts(id)));
+            Thread.Sleep(3000);
             return CreatActionResult<CategoryByIdWithProductsDto>(await _service.GetSingleCategoryByIdProducts(id));
         }
 

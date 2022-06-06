@@ -40,7 +40,12 @@ namespace E_Trade.Repository.Repositories
 
         public async Task<TEntity> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            var entity = await _dbSet.FindAsync(id);
+            if(entity != null)
+            {
+                _dbContext.Entry(entity).State = EntityState.Detached;
+            }
+            return entity;
         }
 
         public void Remove(TEntity entity)
@@ -63,4 +68,4 @@ namespace E_Trade.Repository.Repositories
             return _dbSet.Where(expression);
         }
     }
-}
+} 

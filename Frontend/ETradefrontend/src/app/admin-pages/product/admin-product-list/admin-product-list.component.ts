@@ -11,7 +11,7 @@ import { Product } from "../../../models/product";
 })
 export class AdminProductListComponent implements OnInit {
 
-  displayColumns: string[] = ['imageUrl','name','price','description','stockQuantity','categoryId','category'];
+  displayColumns: string[] = ['imageUrl','name','price','description','stockQuantity','categoryId','category','action'];
   dataSource:any;
   products:Product[] = [];
   @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator;

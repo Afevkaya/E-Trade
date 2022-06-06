@@ -31,7 +31,7 @@
         <mat-form-field>
           <mat-label>Urun aciklama</mat-label>
           <textarea matInput formControlName="description" placeholder="Urun aciklama"></textarea>
-          <mat-error *ngIf="productForm.controls['description']">{{myValidationService.GetValidationMessage(productForm.controls['description'],"Ürün açıuklaması")}}</mat-error>
+          <mat-error *ngIf="productForm.controls['description']">{{myValidationService.GetValidationMessage(productForm.controls['description'],"Ürün açıklaması")}}</mat-error>
         </mat-form-field>
         <button [disabled]="loading" mat-raised-button color="primary">Urun Ekle <i *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i></button>
       </div>

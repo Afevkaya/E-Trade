@@ -54,4 +54,8 @@ export class ProductService {
   updateProduct(product:Product){
     return this.httpClient.put<any>(`${this.apiUrl}`,product);
   }
+
+  deleteProduct(id:number){
+    return this.httpClient.delete<any>(`${this.apiUrl}/${id}`);
+  }
 }

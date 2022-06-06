@@ -39,7 +39,7 @@ export class AdminProductAddComponent implements OnInit {
       ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.minLength(50),
+        Validators.minLength(5),
         Validators.maxLength(400),
       ]),
       imageUrl: new FormControl('', Validators.required),

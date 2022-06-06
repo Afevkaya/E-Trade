@@ -20,6 +20,7 @@ export class AdminProductUpdateComponent implements OnInit {
   loading!: boolean;
   info!: string;
   productId!: number;
+  contentLoading:boolean = true;
 
   constructor(
     private productService: ProductService,
@@ -43,6 +44,7 @@ export class AdminProductUpdateComponent implements OnInit {
         result.data.description
       );
       this.productForm.controls['categoryId'].setValue(result.data.categoryId);
+      this.contentLoading = false;
     });
 
     this.productForm = new FormGroup({

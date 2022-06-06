@@ -1,41 +1,82 @@
 <div class="row mt-2">
   <div class="col-md-12">
-    <form *ngIf="info == null" (ngSubmit)="onSubmit()" [formGroup]="productForm">
-      <div class="form-container">
-        <mat-form-field>
-          <mat-label>Kategori</mat-label>
-          <input type="text" placeholder="kategori seç" matInput formControlName="categoryId" [matAutocomplete]="auto">
-          <mat-error *ngIf="productForm.controls['categoryId']">{{myValidationService.GetValidationMessage(productForm.controls['categoryId'],"kategori")}}</mat-error>
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor ="let category of categories" [value]="category.id">
-              {{category.name}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="name" matInput placeholder="Urun ismi">
-          <mat-error *ngIf="productForm.controls['name']">{{myValidationService.GetValidationMessage(productForm.controls['name'],"Ürün adı")}}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="price" matInput placeholder="Urun fiyat">
-          <mat-error *ngIf="productForm.controls['price']">{{myValidationService.GetValidationMessage(productForm.controls['price'],"Ürün fiyatı")}}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="imageUrl" matInput placeholder="Urun fotograf">
-          <mat-error *ngIf="productForm.controls['imageUrl']">{{myValidationService.GetValidationMessage(productForm.controls['imageUrl'],"Ürün fotoğrafı")}}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input formControlName="stockQuantity" matInput placeholder="Urun stok adet">
-          <mat-error *ngIf="productForm.controls['stockQuantity']">{{myValidationService.GetValidationMessage(productForm.controls['stockQuantity'],"Ürün stok adedi")}}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Urun aciklama</mat-label>
-          <textarea matInput formControlName="description" placeholder="Urun aciklama"></textarea>
-          <mat-error *ngIf="productForm.controls['description']">{{myValidationService.GetValidationMessage(productForm.controls['description'],"Ürün açıklaması")}}</mat-error>
-        </mat-form-field>
-        <button [disabled]="loading" mat-raised-button color="primary">Urun Guncelle <i *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i></button>
+    <div *ngIf="!contentLoading">
+
+      <form *ngIf="info == null" (ngSubmit)="onSubmit()" [formGroup]="productForm">
+        <div class="form-container">
+          <mat-form-field>
+            <mat-label>Kategori</mat-label>
+            <input type="text" placeholder="kategori seç" matInput formControlName="categoryId"
+              [matAutocomplete]="auto">
+            <mat-error *ngIf="productForm.controls['categoryId']">
+              {{myValidationService.GetValidationMessage(productForm.controls['categoryId'],"kategori")}}</mat-error>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="name" matInput placeholder="Urun ismi">
+            <mat-error *ngIf="productForm.controls['name']">
+              {{myValidationService.GetValidationMessage(productForm.controls['name'],"Ürün adı")}}</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="price" matInput placeholder="Urun fiyat">
+            <mat-error *ngIf="productForm.controls['price']">
+              {{myValidationService.GetValidationMessage(productForm.controls['price'],"Ürün fiyatı")}}</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="imageUrl" matInput placeholder="Urun fotograf">
+            <mat-error *ngIf="productForm.controls['imageUrl']">
+              {{myValidationService.GetValidationMessage(productForm.controls['imageUrl'],"Ürün fotoğrafı")}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="stockQuantity" matInput placeholder="Urun stok adet">
+            <mat-error *ngIf="productForm.controls['stockQuantity']">
+              {{myValidationService.GetValidationMessage(productForm.controls['stockQuantity'],"Ürün stok adedi")}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Urun aciklama</mat-label>
+            <textarea matInput formControlName="description" placeholder="Urun aciklama"></textarea>
+            <mat-error *ngIf="productForm.controls['description']">
+              {{myValidationService.GetValidationMessage(productForm.controls['description'],"Ürün açıklaması")}}
+            </mat-error>
+          </mat-form-field>
+          <button [disabled]="loading" mat-raised-button color="primary">Urun Guncelle <i *ngIf="loading"
+              class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i></button>
+        </div>
+      </form>
+    </div>
+    <div class="text-center" *ngIf="contentLoading">
+      <h2>Ürün geliyor...</h2>
+      <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
-    </form>
+      <div class="spinner-grow text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-info" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow text-dark" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <div *ngIf="info!=null" class="alert alert-danger" role="alert">
       {{info}}
     </div>

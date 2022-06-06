@@ -60,7 +60,8 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> İşlemler </th>
       <td mat-cell *matCellDef="let products">
-        <button [routerLink]="['/admin/urun/guncelle',products.id]" mat-raised-button color="primary">güncelle</button>
+        <button [routerLink]="['/admin/urun/guncelle',products.id]" mat-raised-button color="primary"><i class="fa fa-pencil"></i> güncelle</button>
+        <button style="margin-left: 3px;" (click)="deleteProduct(products.id)"  mat-raised-button color="warn"><i class="fa fa-trash-can"></i> sil</button>
       </td>
     </ng-container>
 

@@ -19,11 +19,21 @@ export class AdminProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProductsWithCategory().subscribe(result=>{
-      //this.products = result.data;
+      this.products = result.data;
       //console.log(result.data);
       this.dataSource = new MatTableDataSource<Product>(result.data);
       this.dataSource.paginator = this.paginator;
-    })
+    });
+  }
+
+  deleteProduct(id:number){
+    this.productService.deleteProduct(id).subscribe(result=>{
+      let product = this.products.filter(x=>x.id==id)[0];
+      let index = this.products.indexOf(product);
+      this.products.splice(index,1);
+      this.dataSource = new MatTableDataSource<Product>(this.products);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
 }

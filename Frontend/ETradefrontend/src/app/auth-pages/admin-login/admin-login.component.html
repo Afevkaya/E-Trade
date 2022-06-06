@@ -1,0 +1,16 @@
+<div class="row mt-2">
+  <div class="col-md-9">
+    <app-page-title [title]="'Admin Paneline Giriş'"></app-page-title>
+    <div class="example-container">
+      <mat-form-field >
+        <mat-label>Email</mat-label>
+        <input #emailInput matInput>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>Password</mat-label>
+        <input #passwordInput matInput>
+      </mat-form-field>
+      <button (click)="login(emailInput.value,passwordInput.value)" mat-raised-button color="primary">Admin Login</button>
+    </div>
+  </div>
+</div>

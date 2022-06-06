@@ -5,8 +5,7 @@ import { AdminProductAddComponent } from './admin-pages/product/admin-product-ad
 import { AdminProductListComponent } from './admin-pages/product/admin-product-list/admin-product-list.component';
 import { AdminProductUpdateComponent } from './admin-pages/product/admin-product-update/admin-product-update.component';
 import { AdminProductComponent } from './admin-pages/product/admin-product/admin-product.component';
-import { LoginComponent } from './auth-pages/login/login.component';
-import { SigninComponent } from './auth-pages/signin/signin.component';
+import { AdminLoginComponent } from './auth-pages/admin-login/admin-login.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
@@ -38,31 +37,31 @@ const routes: Routes = [
   },
   {
     // www.etrade.com/admin
-    path: 'admin', component: AdminLayoutComponent,
+    path: 'admin',
+    component: AdminLayoutComponent,
     children: [
-
       // www.etrade.com/admin
-      {path: '',component: AdminHomeComponent},
+      { path: '', component: AdminHomeComponent },
 
       // www.etrade.com/admin/anasayfa
-      {path: 'anasayfa', component: AdminHomeComponent},
+      { path: 'anasayfa', component: AdminHomeComponent },
 
       {
         // www.etrade.com/admin/urun
-        path: 'urun', component: AdminProductComponent,
+        path: 'urun',
+        component: AdminProductComponent,
         children: [
-
           // www.etrade.com/admin/urun/ekle
-          {path: 'ekle', component: AdminProductAddComponent},
+          { path: 'ekle', component: AdminProductAddComponent },
 
           // www.etrade.com/admin/urun/guncelle/2
-          {path: 'guncelle/:id', component: AdminProductUpdateComponent},
+          { path: 'guncelle/:id', component: AdminProductUpdateComponent },
 
           // www.etrade.com/admin/urun/liste
-          {path: 'liste', component: AdminProductListComponent}
-        ]
-      }
-    ]
+          { path: 'liste', component: AdminProductListComponent },
+        ],
+      },
+    ],
   },
 
   // www.etrade.com/auth
@@ -71,13 +70,13 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       // www.etrade.com/auth
-      { path: '', component: LoginComponent },
+      { path: '', component: AdminLoginComponent },
 
-      // www.etrade.com/auth/login
-      { path: 'login', component: LoginComponent },
+      // www.etrade.com/auth/adminlogin
+      { path: 'adminlogin', component: AdminLoginComponent },
 
-      // www.etrade.com/auth/signin
-      { path: 'signin', component: SigninComponent },
+      // www.etrade.com/auth/adminlogin
+      { path: 'customerlogin', component: AdminLoginComponent },
     ],
   },
 ];

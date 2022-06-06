@@ -7,21 +7,17 @@ import { AdminModule } from "./admin-pages/admin.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { LoginComponent } from "./auth-pages/login/login.component";
-import { SigninComponent } from "./auth-pages/signin/signin.component";
 
 
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
+import { AuthService } from './services/auth.service';
+import { AuthModule } from './auth-pages/auth.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthLayoutComponent,
-    LoginComponent,
-    SigninComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,9 +25,10 @@ import { CategoryService } from './services/category.service';
     BrowserAnimationsModule,
     HttpClientModule,
     MainModule,
-    AdminModule
+    AdminModule,
+    AuthModule
   ],
-  providers: [ProductService,CategoryService],
+  providers: [ProductService,CategoryService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

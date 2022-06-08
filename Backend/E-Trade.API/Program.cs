@@ -99,7 +99,6 @@ builder.Services.AddAuthentication(opt =>
         IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
         ValidIssuer = tokenOptions.Issuer,
         ValidAudience = tokenOptions.Audience[0],
-
         // Alttaki özellikler kontrol edilsin mi edilmesin mi?
         ValidateIssuerSigningKey = true,
         ValidateIssuer = true,

@@ -42,6 +42,7 @@ namespace E_Trade.Service.Services
             var userList = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier,appUser.Id),
+                new Claim("roles", role),
                 new Claim(JwtRegisteredClaimNames.Email, appUser.Email),
                 new Claim(ClaimTypes.Name,appUser.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),

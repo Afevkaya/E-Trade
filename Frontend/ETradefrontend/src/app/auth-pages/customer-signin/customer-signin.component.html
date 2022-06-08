@@ -1,0 +1,37 @@
+<div class="row mt-2">
+  <div class="col-md-12">
+    <form *ngIf="info == null" (ngSubmit)="onSubmit()" [formGroup]="customerForm">
+      <div class="form-container">
+        <mat-form-field class="mb-2">
+          <mat-label>İsminizi giriniz</mat-label>
+          <input formControlName="userName" matInput placeholder="Müşteri ismi">
+          <mat-error *ngIf="customerForm.controls['userName']">{{siginValidation.GetSigninValidationMessage(customerForm.controls['userName'],"isim")}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="mb-2">
+          <mat-label>Email giriniz</mat-label>
+          <input formControlName="email" matInput placeholder="pat@example.com">
+          <mat-error *ngIf="customerForm.controls['email']">{{siginValidation.GetSigninValidationMessage(customerForm.controls['email'],"email")}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="mb-2">
+          <mat-label>Password giriniz</mat-label>
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Müşteri password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="customerForm.controls['password']">{{siginValidation.GetSigninValidationMessage(customerForm.controls['password'],"password")}}</mat-error>
+        </mat-form-field>
+        <div class="mb-2">
+          <label>Role: </label>
+          <mat-radio-group formControlName="role">
+            <mat-radio-button value="customer">Müşteri</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <hr>
+        <button [disabled]="loading" mat-raised-button color="primary">Kayıt ol <i *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i></button>
+      </div>
+    </form>
+    <div *ngIf="info!=null" class="alert alert-danger" role="alert">
+      {{info}}
+    </div>
+  </div>
+</div>

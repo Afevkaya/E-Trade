@@ -4,10 +4,12 @@ import { AbstractControl } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
+// Signin validation service class
 export class SigninvalidationService {
 
   constructor() { }
 
+  // Signin validation service metod
   GetSigninValidationMessage(f: AbstractControl, arg:string):any {
     if(f.errors){
       for(let errorname in f.errors){

@@ -4,11 +4,14 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login } from '../models/login';
 
 @Injectable()
+// Auth service class
+// Backend ile bağlanti kuracak class
 export class AuthService {
 
   private apiUrl: string = 'https://localhost:7192/api/auths';
   constructor(private httpClient:HttpClient, public jwtHelper:JwtHelperService) {}
 
+  // login metod
   createToken(login:Login){
     return this.httpClient.post<any>(`${this.apiUrl}/CreateToken`,login);
   }

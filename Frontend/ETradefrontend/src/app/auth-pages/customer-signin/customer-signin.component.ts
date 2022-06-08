@@ -11,14 +11,17 @@ import { SigninvalidationService } from 'src/app/services/signinvalidation.servi
 })
 export class CustomerSigninComponent implements OnInit {
 
+  // Property
   customerForm!: FormGroup;
   success!:boolean;
   loading!:boolean;
   info!:string;
   hide = true;
 
+  // Kullanılacak serviceler ve moduller
   constructor(private singinService:SigninService,private router:Router, public siginValidation:SigninvalidationService) { }
 
+  // Reactive form
   ngOnInit(): void {
     this.customerForm = new FormGroup({
       userName: new FormControl('',Validators.required),
@@ -28,13 +31,14 @@ export class CustomerSigninComponent implements OnInit {
     });
   }
 
+  // Kaydet
   onSubmit(){
     if(this.customerForm.valid){
       this.loading = true;
       this.singinService.addCustomer(this.customerForm.value).subscribe(result=>{
         this.success = true;
         console.log(result.data);
-        this.router.navigateByUrl('/hesabim');
+        this.router.navigateByUrl('/customerlogin');
       },error=>{
         this.success = false;
         this.info = 'bir hata meydana geldi '+error.message;

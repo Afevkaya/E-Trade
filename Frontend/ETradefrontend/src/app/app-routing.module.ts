@@ -6,6 +6,7 @@ import { AdminProductListComponent } from './admin-pages/product/admin-product-l
 import { AdminProductUpdateComponent } from './admin-pages/product/admin-product-update/admin-product-update.component';
 import { AdminProductComponent } from './admin-pages/product/admin-product/admin-product.component';
 import { AdminLoginComponent } from './auth-pages/admin-login/admin-login.component';
+import { CustomerSigninComponent } from './auth-pages/customer-signin/customer-signin.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    canActivate: [AuthGuard,RoleGuardService],
+    // canActivate: [AuthGuard],
     data: {
       expectedRole: 'Admin'
     },
@@ -87,6 +88,9 @@ const routes: Routes = [
 
       // www.etrade.com/auth/adminlogin
       { path: 'customerlogin', component: AdminLoginComponent },
+
+      // www.etrade.com/auth/signin
+      {path: 'signin', component: CustomerSigninComponent}
     ],
   },
 ];

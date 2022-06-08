@@ -35,9 +35,10 @@ export class CustomerLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // login ol
+    // form valid kontrol
     if (this.loginForm.valid) {
       this.loading = true;
+      // login ol
       this.authService.createToken(this.loginForm.value).subscribe((result) => {
         if (result.data != null) {
           localStorage.setItem('accessToken', result.data.accessToken);

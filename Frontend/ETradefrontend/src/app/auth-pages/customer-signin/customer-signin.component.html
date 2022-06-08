@@ -1,6 +1,7 @@
 <div class="row mt-2">
   <div class="col-md-12">
     <!-- Customer form html -->
+    <app-page-title [title]="'Kayıt Sayfası'"></app-page-title>
     <form *ngIf="info == null" (ngSubmit)="onSubmit()" [formGroup]="customerForm">
       <div class="form-container">
         <mat-form-field class="mb-2">

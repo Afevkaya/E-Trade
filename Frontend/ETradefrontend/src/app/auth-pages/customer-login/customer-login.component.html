@@ -1,6 +1,7 @@
 <div class="row mt-2">
   <div class="col-md-9">
     <!-- Login form html -->
+    <app-page-title [title]="'Login Sayfası'"></app-page-title>
     <form *ngIf="info == null" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
       <div class="form-container">
         <mat-form-field class="mb-2">

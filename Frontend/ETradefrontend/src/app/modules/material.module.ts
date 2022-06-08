@@ -4,9 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatTableModule } from "@angular/material/table";
-import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [],
   imports: [
@@ -16,6 +18,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     FormsModule,
     MatButtonModule,
     MatInputModule,
+    MatIconModule,
+    MatRadioModule,
   ],
   exports: [
     CommonModule,
@@ -28,7 +32,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatIconModule,
+    MatRadioModule,
   ],
 })
 export class MaterialModule {}

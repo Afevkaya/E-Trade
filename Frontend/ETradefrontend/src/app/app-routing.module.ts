@@ -17,7 +17,7 @@ import { MyaccountComponent } from './main-pages/myaccount/myaccount.component';
 import { ProductComponent } from './main-pages/product/product.component';
 import { SearchComponent } from './main-pages/search/search.component';
 import { AuthGuard } from './services/auth.guard';
-import { RoleGuardService } from './services/role.guard';
+import { CustomerguardGuard } from './services/customerguard.guard';
 
 // Url deki yazana göre gösterilecek componentleri belirlediğimiz router mekanizması.
 const routes: Routes = [
@@ -25,9 +25,9 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [CustomerguardGuard],
     data: {
-      expectedRole: 'Admin',
+      expectedRole: 'Customer',
     },
     children: [
       // www.etrade.com
@@ -47,7 +47,7 @@ const routes: Routes = [
     // www.etrade.com/admin
     path: 'admin',
     component: AdminLayoutComponent,
-    canActivate: [RoleGuardService],
+    canActivate: [AuthGuard],
     data: {
       expectedRole: 'Admin',
     },

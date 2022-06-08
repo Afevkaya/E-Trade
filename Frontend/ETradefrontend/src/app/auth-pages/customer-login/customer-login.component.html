@@ -1,0 +1,23 @@
+<div class="row mt-2">
+  <div class="col-md-9">
+    <!-- Login form html -->
+    <form *ngIf="info == null" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+      <div class="form-container">
+        <mat-form-field class="mb-2">
+          <mat-label>Email giriniz</mat-label>
+          <input formControlName="email" matInput placeholder="pat@example.com">
+          <mat-error *ngIf="loginForm.controls['email']">{{signinValidation.GetSigninValidationMessage(loginForm.controls['email'],"email")}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="mb-2">
+          <mat-label>Password giriniz</mat-label>
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="*******">
+          <mat-error *ngIf="loginForm.controls['password']">{{signinValidation.GetSigninValidationMessage(loginForm.controls['password'],"password")}}</mat-error>
+        </mat-form-field>
+      </div>
+      <button [disabled]="loading" mat-raised-button color="primary">Giriş yap <i *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i></button>
+    </form>
+    <div *ngIf="info!=null" class="alert alert-danger" role="alert">
+      {{info}}
+    </div>
+  </div>
+</div>

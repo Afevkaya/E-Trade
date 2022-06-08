@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -9,10 +10,16 @@ export class AuthGuard implements CanActivate {
   /**
    *
    */
-  constructor(public authService:AuthService, public router:Router) { }
+  constructor(public authService:AuthService, public router:Router,private helperService:JwtHelperService) { }
 
-  canActivate() {
-    if(!this.authService.isAuthenticated()){
+  canActivate(route: ActivatedRouteSnapshot) {
+
+    const expectedRole = route.data.expectedRole;
+    const accessToken = localStorage.getItem('accessToken') || '';
+
+    const tokenPayload = this.helperService.decodeToken(accessToken);
+
+    if(!this.authService.isAuthenticated() || tokenPayload.roles !== expectedRole){
       this.router.navigate(['auth/adminlogin']);
       return false;
     }

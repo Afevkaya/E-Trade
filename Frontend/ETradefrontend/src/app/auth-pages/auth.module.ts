@@ -8,6 +8,7 @@ import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.componen
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ComponentsModule } from '../components/components.module';
 import { CustomerSigninComponent } from './customer-signin/customer-signin.component';
+import { CustomerLoginComponent } from './customer-login/customer-login.component';
 
 
 
@@ -16,6 +17,7 @@ import { CustomerSigninComponent } from './customer-signin/customer-signin.compo
     AuthLayoutComponent,
     AdminLoginComponent,
     CustomerSigninComponent,
+    CustomerLoginComponent,
   ],
   imports: [
     CommonModule,

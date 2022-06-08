@@ -6,6 +6,7 @@ import { AdminProductListComponent } from './admin-pages/product/admin-product-l
 import { AdminProductUpdateComponent } from './admin-pages/product/admin-product-update/admin-product-update.component';
 import { AdminProductComponent } from './admin-pages/product/admin-product/admin-product.component';
 import { AdminLoginComponent } from './auth-pages/admin-login/admin-login.component';
+import { CustomerLoginComponent } from './auth-pages/customer-login/customer-login.component';
 import { CustomerSigninComponent } from './auth-pages/customer-signin/customer-signin.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -26,7 +27,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     // canActivate: [AuthGuard],
     data: {
-      expectedRole: 'Admin'
+      expectedRole: 'Admin',
     },
     children: [
       // www.etrade.com
@@ -46,9 +47,9 @@ const routes: Routes = [
     // www.etrade.com/admin
     path: 'admin',
     component: AdminLayoutComponent,
-    canActivate:[RoleGuardService],
+    canActivate: [RoleGuardService],
     data: {
-      expectedRole: 'Admin'
+      expectedRole: 'Admin',
     },
     children: [
       // www.etrade.com/admin
@@ -87,10 +88,10 @@ const routes: Routes = [
       { path: 'adminlogin', component: AdminLoginComponent },
 
       // www.etrade.com/auth/adminlogin
-      { path: 'customerlogin', component: AdminLoginComponent },
+      { path: 'customerlogin', component: CustomerLoginComponent },
 
       // www.etrade.com/auth/signin
-      {path: 'signin', component: CustomerSigninComponent}
+      { path: 'signin', component: CustomerSigninComponent },
     ],
   },
 ];

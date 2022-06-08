@@ -7,6 +7,7 @@ import { MaterialModule } from "../modules/material.module";
 import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ComponentsModule } from '../components/components.module';
+import { CustomerSigninComponent } from './customer-signin/customer-signin.component';
 
 
 
@@ -14,6 +15,7 @@ import { ComponentsModule } from '../components/components.module';
   declarations: [
     AuthLayoutComponent,
     AdminLoginComponent,
+    CustomerSigninComponent,
   ],
   imports: [
     CommonModule,

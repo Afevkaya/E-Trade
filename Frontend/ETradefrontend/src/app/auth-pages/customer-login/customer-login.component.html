@@ -16,6 +16,7 @@
         </mat-form-field>
       </div>
       <button [disabled]="loading" mat-raised-button color="primary">Giriş yap <i *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i></button>
+      <button type="button" routerLink="/auth/signin" style="float: right;" mat-raised-button color="warn">Kayıt ol</button>
     </form>
     <div *ngIf="info!=null" class="alert alert-danger" role="alert">
       {{info}}

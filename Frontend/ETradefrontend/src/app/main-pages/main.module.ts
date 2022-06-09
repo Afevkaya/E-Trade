@@ -5,6 +5,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "../app-routing.module";
 import { ComponentsModule } from "../components/components.module";
+import { FormsModule } from "@angular/forms";
+
 
 import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component';
 import { MainNavComponent } from '../nav/main-nav/main-nav.component';
@@ -23,7 +25,8 @@ import { SearchComponent } from './search/search.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    FormsModule
   ]
 })
 export class MainModule { }

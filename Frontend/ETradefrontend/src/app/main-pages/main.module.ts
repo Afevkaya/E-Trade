@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "../app-routing.module";
 import { ComponentsModule } from "../components/components.module";
 import { FormsModule } from "@angular/forms";
+import { MaterialModule } from '../modules/material.module';
 
 
 import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component';
@@ -26,7 +27,8 @@ import { SearchComponent } from './search/search.component';
     HttpClientModule,
     AppRoutingModule,
     ComponentsModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ]
 })
 export class MainModule { }

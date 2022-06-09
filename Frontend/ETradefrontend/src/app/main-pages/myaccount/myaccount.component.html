@@ -3,4 +3,66 @@
 
 <!-- myaccount componentinden page-title componentine statik bir veri taşıyoruz. -->
 <app-page-title [title]="'Hesabim'"></app-page-title>
-<p>myaccount works!</p>
+<div class="mat-elevation-z8">
+  <table style="width: 100%;" mat-table [dataSource]="dataSource">
+
+    <!-- Product Name Column -->
+    <ng-container matColumnDef="productName">
+      <th mat-header-cell *matHeaderCellDef> Ürün Adi </th>
+      <td mat-cell *matCellDef="let responseBaskets">
+        {{responseBaskets.productName}}
+      </td>
+    </ng-container>
+
+    <!-- User Name Column -->
+    <ng-container matColumnDef="appUserName">
+      <th mat-header-cell *matHeaderCellDef> Kullanıcı Adı </th>
+      <td mat-cell *matCellDef="let responseBaskets">
+        {{responseBaskets.appUserName}}
+      </td>
+    </ng-container>
+
+    <!-- Product Price Column -->
+    <ng-container matColumnDef="productPrice">
+      <th mat-header-cell *matHeaderCellDef> Ürün Fiyat </th>
+      <td mat-cell *matCellDef="let responseBaskets">
+        {{responseBaskets.productPrice}}
+      </td>
+    </ng-container>
+
+    <!-- Product Quantity Column -->
+    <ng-container matColumnDef="productQuantity">
+      <th mat-header-cell *matHeaderCellDef> Ürün Adedi </th>
+      <td mat-cell *matCellDef="let responseBaskets">
+        {{responseBaskets.productQuantity}}
+      </td>
+    </ng-container>
+
+    <!-- Basket Total Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Toplam </th>
+      <td mat-cell *matCellDef="let responseBaskets">
+        {{responseBaskets.total}}
+      </td>
+    </ng-container>
+
+    <!-- Update Delete Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+      <td mat-cell *matCellDef="let responseBaskets">
+        <!-- <button [routerLink]="['/admin/urun/guncelle',products.id]" mat-raised-button color="primary"><i class="fa fa-pencil"></i> güncelle</button> -->
+        <button style="margin-left: 3px;" (click)="deleteBasket(responseBaskets.id)"  mat-raised-button color="warn"><i class="fa fa-trash-can"></i> sil</button>
+      </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[2, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

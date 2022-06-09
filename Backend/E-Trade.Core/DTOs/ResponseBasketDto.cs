@@ -8,6 +8,7 @@ namespace E_Trade.Core.DTOs
 {
     public class ResponseBasketDto
     {
+        public int Id { get; set; }
         public string ProductName { get; set; }
         public string AppUserName { get; set; }
         public decimal ProductPrice { get; set; }

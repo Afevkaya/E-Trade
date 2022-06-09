@@ -210,6 +210,7 @@ namespace E_Trade.Service.Services
                 var product = await _productRepository.GetByIdAsync(basket.ProductId);
                 responseBasketDtos.Add(new ResponseBasketDto
                 {
+                    Id = basket.Id,
                     ProductName = product.Name,
                     AppUserName = appUser.UserName,
                     ProductPrice = basket.Product.Price,

@@ -42,11 +42,12 @@ namespace E_Trade.Service.Services
             var userList = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier,appUser.Id),
-                new Claim("roles", role),
                 new Claim(JwtRegisteredClaimNames.Email, appUser.Email),
                 new Claim(ClaimTypes.Name,appUser.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Role,role)
+                new Claim(ClaimTypes.Role,role),
+                new Claim("userId",appUser.Id),
+                new Claim("roles", role),
             };
             userList.AddRange(audinces.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
 

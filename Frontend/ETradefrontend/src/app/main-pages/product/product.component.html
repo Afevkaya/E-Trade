@@ -66,6 +66,10 @@
         Kategori: {{category.name}}
       </span>
     </h3>
-    <a class="btn btn-primary btn-sm float-end"><i class="fa fa-basket-shopping"></i> Sepete Ekle</a>
+    <a (click)="add(product.id,product.price)" class="btn btn-primary btn-sm float-end"><i class="fa fa-basket-shopping"></i> Sepete Ekle</a>
+    <div class="float-end" style="margin-right: 10px;">
+      <span style="color: white;">Ürün Adedi </span>
+      <input  style="display: inline-block;" type="number" [(ngModel)]="productQuantity">
+    </div>
   </div>
 </div>

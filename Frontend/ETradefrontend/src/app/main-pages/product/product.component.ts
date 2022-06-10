@@ -47,6 +47,11 @@ export class ProductComponent implements OnInit {
     this.basket.productQuantity = this.productQuantity;
     this.basket.productPrice = productPrice;
 
+    if(this.productQuantity <= 0){
+      alert("Ürün adedi 1 den küçük olamaz");
+      this.router.navigate(["/"]);
+    }
+
     this.basketService.addBasket(this.basket).subscribe((result) => {
       alert(result.data.productName + ' sepete eklendi');
       this.router.navigate(["/hesabim"]);

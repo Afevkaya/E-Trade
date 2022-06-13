@@ -34,6 +34,10 @@ export class MainNavComponent implements OnInit {
       this.router.navigateByUrl(`/arama?s=${searchText}`);
     }
   }
+
+  logout(){
+    localStorage.clear();
+  }
 }
 
 enum MainPage {

@@ -14,6 +14,7 @@ import { CategoryService } from './services/category.service';
 import { AuthService } from './services/auth.service';
 import { AuthModule } from './auth-pages/auth.module';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     HttpClientModule,
     MainModule,
     AdminModule,
-    AuthModule
+    AuthModule,
+    NgbModule
   ],
   providers: [ProductService,CategoryService,AuthService, {provide: JWT_OPTIONS,useValue: JWT_OPTIONS}, JwtHelperService],
   bootstrap: [AppComponent]

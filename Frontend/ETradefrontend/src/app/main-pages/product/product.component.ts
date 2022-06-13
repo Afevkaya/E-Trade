@@ -51,6 +51,10 @@ export class ProductComponent implements OnInit {
       alert("Ürün adedi 1 den küçük olamaz");
       this.router.navigate(["/"]);
     }
+    if(this.productQuantity > this.product.stockQuantity){
+      alert("Ürün adedi" + `${this.product.stockQuantity}` +  "den büyük olamaz");
+      this.router.navigate(["/"]);
+    }
 
     this.basketService.addBasket(this.basket).subscribe((result) => {
       alert(result.data.productName + ' sepete eklendi');

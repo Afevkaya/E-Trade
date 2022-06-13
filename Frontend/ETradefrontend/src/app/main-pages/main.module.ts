@@ -28,7 +28,7 @@ import { SearchComponent } from './search/search.component';
     AppRoutingModule,
     ComponentsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class MainModule { }

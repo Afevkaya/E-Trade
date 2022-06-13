@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login } from '../models/login';
+import { RefreshToken } from '../models/refresh-token';
 
 @Injectable()
 // Auth service class
@@ -14,6 +15,11 @@ export class AuthService {
   // login metod
   createToken(login:Login){
     return this.httpClient.post<any>(`${this.apiUrl}/CreateToken`,login);
+  }
+
+  createTokenByRefreshtoken(refreshToken:RefreshToken){
+    console.log(refreshToken);
+    return this.httpClient.post<any>(`${this.apiUrl}/CreateTokenByRefreshToken`, refreshToken);
   }
 
   public isAuthenticated(): boolean {

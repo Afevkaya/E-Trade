@@ -13,7 +13,7 @@ namespace E_Trade.Service.Validations
         public CreateUserDtoValidator()
         {
             RuleFor(x => x.UserName).NotNull().WithMessage("{PropertyName} alanı null olamaz").NotEmpty().WithMessage("{PropertyName} alanı boş olamaz");
-            RuleFor(x => x.Email).NotNull().WithMessage("{PropertyName} alanı null olamaz").NotEmpty().WithMessage("{PropertyName} alanı boş olamaz");
+            RuleFor(x => x.Email).NotNull().WithMessage("{PropertyName} alanı null olamaz").NotEmpty().WithMessage("{PropertyName} alanı boş olamaz").EmailAddress().WithMessage("{PropertyName} uygun formatta olmalıdır.");
             RuleFor(x => x.Password).NotNull().WithMessage("{PropertyName} alanı null olamaz").NotEmpty().WithMessage("{PropertyName} alanı boş olamaz");
         }
 

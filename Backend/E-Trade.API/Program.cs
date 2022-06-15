@@ -25,9 +25,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
 
 // Fluent Validation ile ilgili 
+// Custom olarak yazýlan ValidateFilterAttribute class'ýný filterlara ekle.
 builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute()))
+    
+    // Assembly de bulunan bütün IValidator interface'ine sahip olan validator classlarýný ekle.
     .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
+// API tarafýnda validation iþlemi bir filter üzerinden gerçekleþir.
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;

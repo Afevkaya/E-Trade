@@ -38,7 +38,7 @@ export class CustomerSigninComponent implements OnInit {
       this.singinService.addCustomer(this.customerForm.value).subscribe(result=>{
         this.success = true;
         console.log(result.data);
-        this.router.navigateByUrl('/customerlogin');
+        this.router.navigateByUrl('/auth/customerlogin');
       },error=>{
         this.success = false;
         this.info = 'bir hata meydana geldi '+error.message;
